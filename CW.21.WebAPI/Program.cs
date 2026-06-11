@@ -1,10 +1,11 @@
 using CW21.Presentation.Data;
-using CW21.Presentation.Repositories.Authurs;
+using CW21.Presentation.Repositories.Authors;
 using CW21.Presentation.Repositories.Books;
 using CW21.Presentation.Repositories.BookTags;
 using CW21.Presentation.Repositories.Categories;
 using CW21.Presentation.Repositories.Publishers;
 using CW21.Presentation.Repositories.Tags;
+using CW21.Presentation.Services.Authors;
 using CW21.Presentation.Services.Books;
 using CW21.Presentation.Services.Categories;
 using CW21.Presentation.Services.Publishers;
@@ -42,7 +43,8 @@ builder.Services.AddScoped<ITagRepository , TagRepository>();
 builder.Services.AddScoped<IBookService , BookService>();
 builder.Services.AddScoped<ICategoryService , CategoryService>();
 builder.Services.AddScoped<IPublisherService , PublisherService>();
-builder.Services.AddScoped<ITagService , TagService>();
+builder.Services.AddScoped<ITagService, TagService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
 var app = builder.Build();
 
 

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj": {}
+    "C:\\Users\\Hooshmand\\Desktop\\CW-group\\CW21.Presentation\\CW21.Presentation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj": {
+    "C:\\Users\\Hooshmand\\Desktop\\CW-group\\CW21.Presentation\\CW21.Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj",
+        "projectUniqueName": "C:\\Users\\Hooshmand\\Desktop\\CW-group\\CW21.Presentation\\CW21.Presentation.csproj",
         "projectName": "CW21.Presentation",
-        "projectPath": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj",
-        "packagesPath": "C:\\Users\\sinaf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\obj\\",
+        "projectPath": "C:\\Users\\Hooshmand\\Desktop\\CW-group\\CW21.Presentation\\CW21.Presentation.csproj",
+        "packagesPath": "C:\\Users\\Hooshmand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hooshmand\\Desktop\\CW-group\\CW21.Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sinaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hooshmand\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +27,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://package-mirror.liara.ir/repository/nuget/index.json": {}
         },
         "frameworks": {
           "net10.0": {
@@ -45,7 +46,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net10.0": {
@@ -88,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
