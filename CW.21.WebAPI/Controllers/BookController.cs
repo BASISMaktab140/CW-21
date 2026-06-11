@@ -1,6 +1,7 @@
 using CW21.Presentation.Services.Books;
 using CW21.Presentation.Services.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using CW21.Presentation.Commons;
 
 namespace CW._21.WebAPI.Controllers;
 [ApiController]
@@ -18,7 +19,8 @@ public class BookController : ControllerBase
        [HttpGet]
        public async Task<IActionResult> GetBooksAsync()
        {
-              return Ok(await _bookService.GetAllBooksWithDetailsAsync());
+              var books = await _bookService.GetAllBooksWithDetailsAsync();
+              return Ok(ApiResult<List<BookDetailDto>>.Success(books, "Books retrieved successfully"));
        }
 
        // 2
@@ -81,9 +83,9 @@ public class BookController : ControllerBase
               return Ok(await _bookService.GetBooksByTagAsync(tag));
        }
        // 9
-       [HttpGet("{minimumPrice:decimal}/{maximumPrice:decimal}")]
-       public async Task<IActionResult> GetBooksByPriceRangeAsync([FromRoute] decimal minimumPrice
-              , [FromRoute] decimal maximumPrice)
+       [HttpGet("{minimumPrice:int}/{maximumPrice:int}")]
+       public async Task<IActionResult> GetBooksByPriceRangeAsync([FromQuery] decimal minimumPrice
+              , [FromQuery] decimal maximumPrice)
        {
               return Ok(await _bookService.GetBooksByPriceRange(minimumPrice, maximumPrice));
        }
