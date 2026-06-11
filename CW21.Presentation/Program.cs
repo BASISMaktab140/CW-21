@@ -16,13 +16,15 @@ using CW21.Presentation.Services.Books;
 using CW21.Presentation.Services.Categories;
 using CW21.Presentation.Services.Publishers;
 
-var context = new AppDbContext();
+Console.WriteLine("Hello, World!");
 
-Console.WriteLine();
-var bookRepo = new BookRepository(context);
-var bookService = new BookService(bookRepo);
+//var context = new AppDbContext();
 
-var bookDetails = await bookService.GetAllBooksWithDetailsAsync();
+// Console.WriteLine();
+// var bookRepo = new BookRepository(context);
+// var bookService = new BookService(bookRepo);
+//
+// var bookDetails = await bookService.GetAllBooksWithDetailsAsync();
 
 /*Console.WriteLine(JsonSerializer.Serialize(bookDetails, 
     new JsonSerializerOptions
@@ -31,10 +33,10 @@ var bookDetails = await bookService.GetAllBooksWithDetailsAsync();
         ReferenceHandler = ReferenceHandler.IgnoreCycles
     }));*/
 
-var publisherRepo = new PublisherRepository(context);
-var publisherService = new PublisherService(publisherRepo);
-
-var publisherDetails = await  publisherService.GetAllPublishersWithDetails();
+// var publisherRepo = new PublisherRepository(context);
+// var publisherService = new PublisherService(publisherRepo);
+//
+// var publisherDetails = await  publisherService.GetAllPublishersWithDetails();
 
 /*
 Console.WriteLine(JsonSerializer.Serialize(publisherDetails, new JsonSerializerOptions
@@ -44,11 +46,11 @@ Console.WriteLine(JsonSerializer.Serialize(publisherDetails, new JsonSerializerO
 }));
 */
 
-var categoryRepo = new CategoryRepository(context);
-var categoryService = new CategoryService(categoryRepo);
-
-
-var categoryDetails = await  categoryService.GetAllCategoryBooks();
+// var categoryRepo = new CategoryRepository(context);
+// var categoryService = new CategoryService(categoryRepo);
+//
+//
+// var categoryDetails = await  categoryService.GetAllCategoryBooks();
 /*
 Console.WriteLine(JsonSerializer.Serialize(categoryDetails, new JsonSerializerOptions
 {
@@ -58,9 +60,9 @@ Console.WriteLine(JsonSerializer.Serialize(categoryDetails, new JsonSerializerOp
 */
 
 
-var booksWithCriteria = await  bookService.GetBooksMeetCriteria(0);
-
-var averagePrice = bookRepo.GetAll().Average(b => b.Price);
+// var booksWithCriteria = await  bookService.GetBooksMeetCriteria(0);
+//
+// var averagePrice = bookRepo.GetAll().Average(b => b.Price);
 /*Console.WriteLine($"Average:{averagePrice} ");
 
 Console.WriteLine("All Books With Criteria:");
@@ -71,7 +73,7 @@ Console.WriteLine(JsonSerializer.Serialize(booksWithCriteria,
         ReferenceHandler = ReferenceHandler.IgnoreCycles
     }));*/
     
-var publisherBookCount = await publisherService.GetAllPublishersWithMinimumBooks(2);
+// var publisherBookCount = await publisherService.GetAllPublishersWithMinimumBooks(2);
 
 /*Console.WriteLine(JsonSerializer.Serialize(publisherBookCount, 
         new JsonSerializerOptions
@@ -80,7 +82,7 @@ var publisherBookCount = await publisherService.GetAllPublishersWithMinimumBooks
             ReferenceHandler = ReferenceHandler.IgnoreCycles
         }));*/
         
-var publisherBookDetails = await publisherService.GetAllPublisherBooksDetails();
+// var publisherBookDetails = await publisherService.GetAllPublisherBooksDetails();
         
         /*Console.WriteLine(JsonSerializer.Serialize(publisherBookDetails, 
             new JsonSerializerOptions
@@ -89,10 +91,10 @@ var publisherBookDetails = await publisherService.GetAllPublisherBooksDetails();
                 ReferenceHandler = ReferenceHandler.IgnoreCycles
             }));*/
             
-            var publisherMostExpensiveBooks = await publisherService.GetPublisherMostExpensiveBookPrices();
-            Console.WriteLine(JsonSerializer.Serialize(publisherMostExpensiveBooks, 
-                new JsonSerializerOptions
-                {
-                    WriteIndented = true,
-                    ReferenceHandler = ReferenceHandler.IgnoreCycles
-                })); 
+            // var publisherMostExpensiveBooks = await publisherService.GetPublisherMostExpensiveBookPrices();
+            // Console.WriteLine(JsonSerializer.Serialize(publisherMostExpensiveBooks, 
+            //     new JsonSerializerOptions
+            //     {
+            //         WriteIndented = true,
+            //         ReferenceHandler = ReferenceHandler.IgnoreCycles
+            //     })); 

@@ -815,3 +815,4 @@ C:\Users\user\Desktop\New folder\CW21\CW21.Presentation\bin\Debug\net10.0\runtim
 C:\Users\user\Desktop\New folder\CW21\CW21.Presentation\obj\Debug\net10.0\CW21.Pre.5F4FAC14.Up2Date
 C:\Users\user\Desktop\New folder\CW21\CW21.Presentation\obj\Debug\net10.0\CW21.Presentation.genruntimeconfig.cache
 C:\Users\user\Desktop\New folder\CW21\CW21.Presentation\obj\Debug\net10.0\ref\CW21.Presentation.dll
+C:\Users\user\Desktop\New folder\CW21\CW21.Presentation\obj\Debug\net10.0\CW21.Presentation.sourcelink.json

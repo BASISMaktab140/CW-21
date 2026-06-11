@@ -49,8 +49,8 @@ public class TagController : ControllerBase
 
     [HttpGet("{id:int}/Books")]
     public async Task<ActionResult<List<BookInfoByTag>>> GetBooksByTagAsync([FromRoute] int tagId,
-        [FromBody] int page,
-        [FromBody]int pageSize)
+        [FromQuery] int page,
+        [FromQuery]int pageSize)
     {
         var result = await _tagService.GetBooksByTagAsync(tagId, page, pageSize);
         return Ok(result);
