@@ -42,7 +42,43 @@ namespace CW21.Presentation.Services.Tags
 
           return result.GetAllTagsMapper();
         }
+        public async Task<List<TagInfoDto>> GetAllTagsAsync(int page, int pageSize)
+        {
+            var tags = await _tagRepository.GetAll()
+               .Include(t => t.BookTags)
+               .Skip((page - 1)* pageSize).Take(pageSize).ToListAsync();
+            return tags.Select(t => t.GetAllTagsMapper()).ToList();
+        }
+        public async Task UpdateTagAsync(int tagId, string newName)
+        {
+            var tag = await _tagRepository.GetByIdAsync(tagId);
+            
+            if(tag == null)
+                throw new Exception($"Tag {tagId} not found");
+            
+            tag.Name = newName;
+            await _tagRepository.UpdateAsync(tag);
+        }
 
+        public async Task DeleteTagAsync(int tagId)
+        {
+            var tag = await _tagRepository.GetByIdAsync(tagId);
+            
+            if(tag == null)
+                throw new Exception($"Tag {tagId} not found");
+            
+            await _tagRepository.DeleteAsync(tagId);
+        }
+        
+        public async Task<List<BookInfoByTag>> GetBooksByTagAsync(int tagId, int page, int pageSize)
+        {
+            var result = await _bookRepository.GetAll().
+                Where(b => b.BookTags.Any(t => t.TagId == tagId))
+                .Skip((page - 1 )*pageSize).Take(pageSize).ToListAsync();
+
+            return result.Select(b => b.ToInfoByTag()).ToList();
+        }
+        
         public async Task AddTagToBookAsync(int tagId, int bookId)
         {
             var tagResult = await _tagRepository.GetByIdAsync(tagId);
@@ -59,7 +95,7 @@ namespace CW21.Presentation.Services.Tags
                 TagId = tagId
             });
         }
-
+       
         public async Task RemoveTagFromBookAsync(int tagId, int bookId)
         {
             var tagResult = await _tagRepository.GetByIdAsync(tagId);
@@ -72,30 +108,5 @@ namespace CW21.Presentation.Services.Tags
             
             await _bookTagRepository.DeleteAsync(bookResult.BookTags.First(t => t.TagId == tagId).Id);
         }
-
-        public async Task<List<TagInfoDto>> GetAllTagsAsync(int page, int pageSize)
-        {
-            var tags = await _tagRepository.GetAll()
-               .Include(t => t.BookTags)
-               .Skip((page - 1)* pageSize).Take(pageSize).ToListAsync();
-            return tags.Select(t => t.GetAllTagsMapper()).ToList();
-        }
-
-        public async Task<List<BookInfoByTag>> GetBooksByTagAsync(int tagId, int page, int pageSize)
-        {
-            var result = await _bookRepository.GetAll().
-                Where(b => b.BookTags.Any(t => t.TagId == tagId))
-                .Skip((page - 1 )*pageSize).Take(pageSize).ToListAsync();
-
-            return result.Select(b => b.ToInfoByTag()).ToList();
-        }
-        
-        
     }
 }
-// var position = 20;
-// var nextPage = await context.Posts
-//     .OrderBy(b => b.PostId)
-//     .Skip(position)
-//     .Take(10)
-//     .ToListAsync();

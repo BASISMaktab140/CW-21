@@ -10,10 +10,12 @@ namespace CW21.Presentation.Services.Tags
 {
     public  interface ITagService 
     {
-        Task<List<TagInfoDto>> GetAllTagsAsync(int page, int pageSize);
-        Task<List<BookInfoByTag>> GetBooksByTagAsync(int tagId, int page, int pageSize);
         Task CreateTagAsync(string name);
         Task<TagInfoDto?> GetTagByIdAsync(int tagId);
+        Task<List<TagInfoDto>> GetAllTagsAsync(int page, int pageSize);
+        Task UpdateTagAsync(int tagId, string newName);
+        Task DeleteTagAsync(int tagId);
+        Task<List<BookInfoByTag>> GetBooksByTagAsync(int tagId, int page, int pageSize);
         Task AddTagToBookAsync(int tagId, int bookId);
         Task RemoveTagFromBookAsync(int tagId, int bookId);
     }

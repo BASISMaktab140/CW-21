@@ -19,14 +19,11 @@ public class TagController : ControllerBase
         _tagService = tagService;
     }
 
-    [HttpGet()]
-    public async Task<ActionResult<List<Tag>>> GetAllTagsAsync(
-        [FromQuery][Range(1d,10d)] int pageNumber = 1, 
-        [FromQuery] int pageSize = 10)
+    [HttpPost()]
+    public async Task<ActionResult<Tag>> CreateTagAsync([FromBody] CreateTagDto tagDto)
     {
-        var skip = (pageNumber - 1) * 10;
-        var tags = await _tagService.GetAllTagsAsync(skip, pageSize);
-        return Ok(tags);
+        var result = _tagService.CreateTagAsync(tagDto.Name);
+        return Ok(result);
     }
     
     [HttpGet("{id:int}")]
@@ -39,14 +36,37 @@ public class TagController : ControllerBase
         
         return Ok(tag);
     }
-
-    [HttpPost()]
-    public async Task<ActionResult<Tag>> CreateTagAsync([FromBody] CreateTagDto tagDto)
+    
+    [HttpGet()]
+    public async Task<ActionResult<List<Tag>>> GetAllTagsAsync(
+        [FromQuery][Range(1d,10d)] int pageNumber = 1, 
+        [FromQuery] int pageSize = 10)
     {
-        var result = _tagService.CreateTagAsync(tagDto.Name);
-        return Ok(result);
+        var skip = (pageNumber - 1) * 10;
+        var tags = await _tagService.GetAllTagsAsync(skip, pageSize);
+        return Ok(tags);
     }
 
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult> UpdateTagAsync([FromRoute] int id)
+    {
+        var tag = await _tagService.GetTagByIdAsync(id);
+        if (tag == null)
+            return NotFound();
+        
+        return Ok(tag);
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult> DeleteTagAsync([FromRoute] int id)
+    {
+        var tag = await _tagService.GetTagByIdAsync(id);
+        if (tag == null)
+            return NotFound();
+        
+        return Ok(tag);
+    }
+    
     [HttpGet("{id:int}/Books")]
     public async Task<ActionResult<List<BookInfoByTag>>> GetBooksByTagAsync([FromRoute] int tagId,
         [FromQuery] int page,

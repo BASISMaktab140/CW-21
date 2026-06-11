@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj": {}
+    "C:\\Users\\user\\Desktop\\Cw-21\\CW21.Presentation\\CW21.Presentation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj": {
+    "C:\\Users\\user\\Desktop\\Cw-21\\CW21.Presentation\\CW21.Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\Cw-21\\CW21.Presentation\\CW21.Presentation.csproj",
         "projectName": "CW21.Presentation",
-        "projectPath": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj",
-        "packagesPath": "C:\\Users\\sinaf\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\obj\\",
+        "projectPath": "C:\\Users\\user\\Desktop\\Cw-21\\CW21.Presentation\\CW21.Presentation.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\Cw-21\\CW21.Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sinaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +27,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://package-mirror.liara.ir/repository/nuget/index.json": {}
         },
         "frameworks": {
           "net10.0": {
