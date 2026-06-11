@@ -6,12 +6,10 @@ namespace CW21.Presentation.Services.Books;
 public interface IBookService
 {
     Task<List<BookDetailDto>?> GetAllBooksWithDetailsAsync();
-    
-    Task<BookInfoDto> GetBookDetailsAsync(int id);
-/// <summary>
-/// سوال 4 بخش 6
-/// </summary>
-/// <param name="minimumQuantity"></param>
-/// <returns></returns>
+
+    Task<BookInfoDto?> GetBookDetailsAsync(int id);
+    Task<List<BookInfoDto>> GetAvailableBooksAsync();
+    Task<List<BookInfoDto>> GetBookByTitleAsync(string title);
+    Task<bool> AddBookAsync(BookInfoDto bookInfo);
     Task<List<Book>?> GetBooksMeetCriteria(int minimumQuantity);
 }

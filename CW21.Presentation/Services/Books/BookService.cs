@@ -25,13 +25,46 @@ public class BookService : IBookService
                .Select(x => x.BookDetailMapper()).ToListAsync();
     }
 
-    public async Task<BookInfoDto> GetBookDetailsAsync(int id)
+    public async Task<BookInfoDto?> GetBookDetailsAsync(int id)
     {
        var book = await _bookRepository.GetByIdAsync(id);
        if (book == null)
            throw new KeyNotFoundException($"Book with id {id} not found");
 
        return book.BookInfoMapper();
+    }
+
+    public async Task<List<BookInfoDto>> GetAvailableBooksAsync()
+    {
+        var result = await _bookRepository.GetAll(x => x.Stock > 0)
+            .Include(x => x.Author)
+            .Include(x => x.Category)
+            .Include(x => x.Publisher)
+            .Include(x => x.BookTags)
+            .Select(book => book.BookInfoMapper())
+            .ToListAsync();
+        return result;
+
+    }
+
+    public async Task<List<BookInfoDto>> GetBookByTitleAsync(string title)
+    {
+        var result = await _bookRepository.GetAll(b => b.Title == title)
+            .Include(x => x.Author)
+            .Include(x => x.Category)
+            .Include(x => x.Publisher)
+            .Include(x => x.BookTags)
+            .Select(book => book.BookInfoMapper())
+            .ToListAsync();
+        return result;
+    }
+
+    public async Task<bool> AddBookAsync(BookInfoDto bookInfo)
+    {
+        var book = new Book(bookInfo.Title, bookInfo.Price, bookInfo.PublishYear, bookInfo.Author.Id,
+            bookInfo.Category.Id, bookInfo.Stock, bookInfo.Publisher.Id);
+        await _bookRepository.AddAsync(book);
+        return true;
     }
 
     public async Task<List<Book>?> GetBooksMeetCriteria(int minimumQuantity)

@@ -14,6 +14,17 @@ public class Book : BaseEntity
 
     }
 
+    public Book(string title, decimal price, int publishYear, int authorId, int categoryId, int stock, int publisherId)
+    {
+        Title = title;
+        Price = price;
+        PublishYear = publishYear;
+        AuthorId = authorId;
+        CategoryId = categoryId;
+        Stock = stock;
+        PublisherId = publisherId;
+        //BookTags = bookTags;
+    }
     public Book(string title, decimal price, int publishYear, int authorId, Author author, int categoryId, Category category, int stock, int publisherId, Publisher publisher, List<BookTag> bookTags)
     {
         Title = title;
