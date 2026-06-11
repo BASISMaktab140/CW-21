@@ -11,7 +11,7 @@ namespace CW21.Presentation.Services.Tags
     public  interface ITagService 
     {
         Task<List<TagInfoDto>> GetAllTagsAsync(int page, int pageSize);
-        Task<List<BookInfoByTag>> GetBooksByTagAsync(int tagId, int page, int pageSize);
+        Task<List<BookInfoByTagDto>> GetBooksByTagAsync(int tagId, int page, int pageSize);
         Task CreateTagAsync(string name);
         Task<TagInfoDto?> GetTagByIdAsync(int tagId);
         Task AddTagToBookAsync(int tagId, int bookId);
