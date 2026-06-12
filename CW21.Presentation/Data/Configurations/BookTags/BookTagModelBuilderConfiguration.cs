@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CW21.Presentation.Data.BookTags
+namespace CW21.Presentation.Data.Configurations.BookTags
 {
     public class BookTagModelBuilderConfiguration : BaseModelBuilderConfiguration<BookTag>
     {
