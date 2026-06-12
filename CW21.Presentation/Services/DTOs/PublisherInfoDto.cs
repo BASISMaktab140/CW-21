@@ -1,10 +1,28 @@
+using System.ComponentModel.DataAnnotations;
 using CW21.Presentation.Entities;
 using CW21.Presentation.Entities.Publishers;
 
 namespace CW21.Presentation.Services.DTOs;
 
-public record PublisherInfoDto(string PublisherName, string PublisherCity,
-    int PublisherBooks,List<string> BookNames);
+public record PublisherInfoDto(
+    string PublisherName,
+    string PublisherCity,
+    int PublisherBooks,
+    List<string> BookNames);
+
+public record CreatePublisherDto(
+    [property: Required]
+    [property: MaxLength(100)]
+    string Name,
+    [property: MaxLength(50)] string? City,
+    [property: MaxLength(20)] string? PhoneNumber);
+
+public record UpdatePublisherDto(
+    [property: Required]
+    [property: MaxLength(100)]
+    string Name,
+    [property: MaxLength(50)] string? City,
+    [property: MaxLength(20)] string? PhoneNumber);
 
 public static class PublisherMapper
 {
@@ -33,6 +51,7 @@ public static class PublisherMapper
         {
             return new PublisherBookPriceDto(publisher.Name, "No books", 0);
         }
+
         var mostExpensiveBook = publisher.Books.OrderByDescending(b => b.Price).First();
         return new PublisherBookPriceDto(publisher.Name, mostExpensiveBook.Title, mostExpensiveBook.Price);
     }
