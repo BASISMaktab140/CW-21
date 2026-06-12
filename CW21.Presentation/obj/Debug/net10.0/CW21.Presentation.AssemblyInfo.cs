@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CW21.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1a18b4299d27d9bf0625346b8f2f24f48a1152c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+167af5b75a502b80efdf68594ff8388d868a1179")]
 [assembly: System.Reflection.AssemblyProductAttribute("CW21.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CW21.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
