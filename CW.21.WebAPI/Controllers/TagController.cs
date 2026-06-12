@@ -48,7 +48,7 @@ public class TagController : ControllerBase
     }
 
     [HttpGet("{id:int}/Books")]
-    public async Task<ActionResult<List<BookInfoByTag>>> GetBooksByTagAsync([FromRoute] int tagId,
+    public async Task<ActionResult<List<BookInfoByTagDto>>> GetBooksByTagAsync([FromRoute] int tagId,
         [FromQuery] int page,
         [FromQuery]int pageSize)
     {
