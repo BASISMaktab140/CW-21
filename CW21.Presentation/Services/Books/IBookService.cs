@@ -11,7 +11,6 @@ public interface IBookService
     /// </summary>
     /// <returns></returns>
     Task<List<BookDetailDto>> GetAllBooksWithDetailsAsync();
-
     /// <summary>
     ///  کتاب با  id مشخص
     /// </summary>
@@ -73,6 +72,13 @@ public interface IBookService
     /// <returns></returns>
     Task<List<BookInfoByAuthorDto>> GetBooksByAuthorAsync(string authorName);
     
+    /// <summary>
+    /// نمایش کتاب های نویسنده با id
+    /// </summary>
+    /// <param name="authorId"></param>
+    /// <returns></returns>
+    Task<List<BookInfoDto>> GetAuthorBooksByIdAsync(int authorId);
+
     /// <summary>
     /// نمایش کتاب های یک ناشر
     /// </summary>

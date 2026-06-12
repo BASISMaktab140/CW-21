@@ -43,22 +43,7 @@ namespace CW21.Presentation.Services.Authors
         }
 
         
-        public async Task<List<BookInfoDto>> GetAuthorBooksAsync(int authorId)
-        {
-            return await _authorRepository.GetAll(a => a.Id == authorId)
-                .Include(a => a.Books)
-                    .ThenInclude(b => b.Author)
-                .Include(a => a.Books)
-                    .ThenInclude(b => b.Category)
-                .Include(a => a.Books)
-                    .ThenInclude(b => b.Publisher)
-                .Include(a => a.Books)
-                    .ThenInclude(b => b.BookTags)
-                        .ThenInclude(bt => bt.Tag)
-                .SelectMany(a => a.Books)
-                .Select(b => b.BookInfoMapper())
-                .ToListAsync();
-        }
+
 
       
         public async Task<List<AuthorInfoDto>> GetAuthorsWithMoreThanTwoBooksAsync()

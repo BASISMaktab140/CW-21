@@ -10,9 +10,7 @@ namespace CW21.Presentation.Services.Authors
         Task<List<AuthorBookCountDto>> GetAllAuthorsAsync();
 
         Task<AuthorInfoDto?> GetAuthorByIdAsync(int id);
-
-        Task<List<BookInfoDto>> GetAuthorBooksAsync(int authorId);
-
+        
         Task<List<AuthorInfoDto>> GetAuthorsWithMoreThanTwoBooksAsync();
 
         Task<List<AuthorInfoDto>> SearchAuthorByNameAsync(string name);

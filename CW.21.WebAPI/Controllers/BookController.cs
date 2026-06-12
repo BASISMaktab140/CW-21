@@ -69,6 +69,13 @@ public class BookController : ControllerBase
               return Ok(await _bookService.GetBooksByAuthorAsync(author));
        }
        
+       
+               
+       [HttpGet("{id:int}/books")]
+       public async Task<IActionResult> GetAuthorBooksAsync(int id)
+       {
+              return Ok(await _bookService.GetAuthorBooksByIdAsync(id));
+       }
        // 7
        [HttpGet("publisher/{publisher}")]
        public async Task<IActionResult> GetBooksByPublisherAsync([FromRoute] string publisher)

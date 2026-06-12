@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using CW21.Presentation.Entities;
 using CW21.Presentation.Entities.Books;
 using CW21.Presentation.Repositories;
-using CW21.Presentation.Repositories.Authurs;
+using CW21.Presentation.Repositories.Authors;
 using CW21.Presentation.Repositories.Books;
 using CW21.Presentation.Repositories.Categories;
 using CW21.Presentation.Repositories.Generics;
@@ -109,6 +109,11 @@ public class BookService : IBookService
             .GetAll(b => b.Author.FullName == authorName)
             .ToListAsync();
         return books.InfoByAuthorToDtoList();
+    }
+
+    public async Task<List<BookInfoDto>> GetAuthorBooksByIdAsync(int authorId)
+    {
+        return await _bookRepository.GetAuthorBooksAsync(authorId);
     }
 
     public async Task<List<BookInfoByPublisherDto>> GetBooksByPublisherAsync(string publisherName)

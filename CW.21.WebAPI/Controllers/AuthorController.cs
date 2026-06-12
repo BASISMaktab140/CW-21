@@ -34,12 +34,7 @@ namespace CW._21.WebAPI.Controllers
             return Ok(author);
         }
 
-        
-        [HttpGet("{id:int}/books")]
-        public async Task<IActionResult> GetAuthorBooksAsync(int id)
-        {
-            return Ok(await _authorService.GetAuthorBooksAsync(id));
-        }
+
 
         
         [HttpGet("more-than-two-books")]
