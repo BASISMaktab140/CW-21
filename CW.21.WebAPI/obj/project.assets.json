@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {
       "Azure.Core/1.47.1": {
@@ -1611,23 +1611,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sinaf\\.nuget\\packages\\": {},
+    "C:\\Users\\Bahar\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW.21.WebAPI\\CW.21.WebAPI.csproj",
+      "projectUniqueName": "D:\\MaktabSharif\\CwBookStore\\CW.21.WebAPI\\CW.21.WebAPI.csproj",
       "projectName": "CW.21.WebAPI",
-      "projectPath": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW.21.WebAPI\\CW.21.WebAPI.csproj",
-      "packagesPath": "C:\\Users\\sinaf\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW.21.WebAPI\\obj\\",
+      "projectPath": "D:\\MaktabSharif\\CwBookStore\\CW.21.WebAPI\\CW.21.WebAPI.csproj",
+      "packagesPath": "C:\\Users\\Bahar\\.nuget\\packages\\",
+      "outputPath": "D:\\MaktabSharif\\CwBookStore\\CW.21.WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\sinaf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bahar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1637,14 +1637,16 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://package-mirror.liara.ir/repository/nuget/index.json": {}
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj": {
-              "projectPath": "C:\\Users\\sinaf\\Desktop\\CW-21Goroohi\\CW21.Presentation\\CW21.Presentation.csproj"
+            "D:\\MaktabSharif\\CwBookStore\\CW21.Presentation\\CW21.Presentation.csproj": {
+              "projectPath": "D:\\MaktabSharif\\CwBookStore\\CW21.Presentation\\CW21.Presentation.csproj"
             }
           }
         }
@@ -1663,6 +1665,7 @@
     },
     "frameworks": {
       "net10.0": {
+        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": {
@@ -1697,7 +1700,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
