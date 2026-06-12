@@ -50,4 +50,47 @@ public class PublisherService : IPublisherService
             .Select(x => x.PublisherBookPriceDtoMapper())
             .ToListAsync();
     }
+    
+    public async Task<PublisherInfoDto?> GetPublisherByIdAsync(int id)
+    {
+        var publisher = await _publisherRepository.GetAll()
+            .Include(p => p.Books)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        return publisher?.PublisherDetailMapper();
+    }
+
+    public async Task CreatePublisherAsync(CreatePublisherDto dto)
+    {
+        var publisher = new Publisher
+        {
+            Name = dto.Name,
+            City = dto.City,
+            PhoneNumber = dto.PhoneNumber,
+            CreatedAt = DateTime.UtcNow
+        };
+        await _publisherRepository.AddAsync(publisher);
+    }
+
+    public async Task<bool> UpdatePublisherAsync(int id, UpdatePublisherDto dto)
+    {
+        var publisher = await _publisherRepository.GetByIdAsync(id, tracking: true);
+        if (publisher == null) return false;
+
+        publisher.Name = dto.Name;
+        publisher.City = dto.City;
+        publisher.PhoneNumber = dto.PhoneNumber;
+
+        await _publisherRepository.UpdateAsync(publisher);
+        return true;
+    }
+
+    public async Task<bool> DeletePublisherAsync(int id)
+    {
+        var publisher = await _publisherRepository.GetByIdAsync(id);
+        if (publisher == null) return false;
+
+        await _publisherRepository.DeleteAsync(id);
+        return true;
+    }
 }
