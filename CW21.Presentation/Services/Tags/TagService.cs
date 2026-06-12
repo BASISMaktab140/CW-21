@@ -5,6 +5,7 @@ using CW21.Presentation.Repositories.BookTags;
 using CW21.Presentation.Repositories.Generics;
 using CW21.Presentation.Repositories.Tags;
 using CW21.Presentation.Services.DTOs;
+using CW21.Presentation.Services.Mappers;
 using Microsoft.EntityFrameworkCore;
 
 namespace CW21.Presentation.Services.Tags
@@ -81,13 +82,13 @@ namespace CW21.Presentation.Services.Tags
             return tags.Select(t => t.GetAllTagsMapper()).ToList();
         }
 
-        public async Task<List<BookInfoByTag>> GetBooksByTagAsync(int tagId, int page, int pageSize)
+        public async Task<List<BookInfoByTagDto>> GetBooksByTagAsync(int tagId, int page, int pageSize)
         {
             var result = await _bookRepository.GetAll().
                 Where(b => b.BookTags.Any(t => t.TagId == tagId))
                 .Skip((page - 1 )*pageSize).Take(pageSize).ToListAsync();
 
-            return result.Select(b => b.ToInfoByTag()).ToList();
+            return result.Select(b => b.InfoByTagToDto()).ToList();
         }
         
         
