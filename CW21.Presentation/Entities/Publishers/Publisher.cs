@@ -17,8 +17,7 @@ public class Publisher : BaseEntity
     
     public DateTime CreatedAt { get;  set; }
 
-    //public int BookId { get; set; }
-    public IEnumerable<Books.Book>? Books { get; set; } = new List<Book>();
+    public IEnumerable<Book>? Books { get; set; } = new List<Book>();
 }
 
 
