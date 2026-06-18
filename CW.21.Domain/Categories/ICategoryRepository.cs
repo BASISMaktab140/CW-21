@@ -1,8 +1,7 @@
-using CW._21.Domain.Categories;
-using CW._21.Infrastructures.Repositories.Generics;
-using CW._21.Services.DTOs;
+using CW._21.Domain.DTOs;
+using CW._21.Domain.Generics;
 
-namespace CW._21.Infrastructures.Repositories.Categories;
+namespace CW._21.Domain.Categories;
 
 public interface ICategoryRepository : IGenericRepository<Category>
 {

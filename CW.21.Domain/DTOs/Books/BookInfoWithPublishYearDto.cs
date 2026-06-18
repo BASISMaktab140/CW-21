@@ -1,3 +1,3 @@
-namespace CW._21.Services.DTOs.Books;
+namespace CW._21.Domain.DTOs.Books;
 
 public record BookInfoWithPublishYearDto(string Title, int PublisherYear);

@@ -1,7 +1,7 @@
+using CW._21.Domain.DTOs;
 using CW._21.Domain.Publishers;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;
-using CW._21.Services.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace CW._21.Infrastructures.Repositories.Publishers;

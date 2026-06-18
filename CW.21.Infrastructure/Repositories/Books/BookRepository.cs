@@ -1,7 +1,7 @@
 using CW._21.Domain.Books;
+using CW._21.Domain.DTOs.Books;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;
-using CW._21.Services.DTOs.Books;
 using Microsoft.EntityFrameworkCore;
 
 namespace CW._21.Infrastructures.Repositories.Books;

@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Cw._21.Abstraction;
+using CW._21.Domain.Generics;
 using CW._21.Infrastructures.Data;
 using Microsoft.EntityFrameworkCore;
 

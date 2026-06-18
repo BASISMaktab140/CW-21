@@ -1,5 +1,4 @@
-﻿using CW._21.Services.DTOs;
-using CW._21.Services.DTOs.Books;
+﻿using CW._21.Domain.DTOs;
 
 namespace CW._21.Services.Tags
 {

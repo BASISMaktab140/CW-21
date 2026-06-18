@@ -1,6 +1,5 @@
 ﻿using CW._21.Domain.Authors;
-using CW._21.Infrastructures.Repositories.Authors;
-using CW._21.Services.DTOs;
+using CW._21.Domain.DTOs;
 
 namespace CW._21.Services.Authors
 {

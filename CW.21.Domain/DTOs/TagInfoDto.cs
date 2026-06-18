@@ -1,6 +1,6 @@
 ﻿using CW._21.Domain.Tags;
 
-namespace CW._21.Services.DTOs
+namespace CW._21.Domain.DTOs
 {
     public record TagInfoDto(int TagId, string TagName, int BookCount);
     public static class TagMapper

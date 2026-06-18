@@ -1,9 +1,7 @@
-﻿using CW._21.Domain.Tags;
-using CW._21.Infrastructures.Repositories.Generics;
-using CW._21.Services.DTOs;
-using CW._21.Services.DTOs.Books;
+﻿using CW._21.Domain.DTOs;
+using CW._21.Domain.Generics;
 
-namespace CW._21.Infrastructures.Repositories.Tags
+namespace CW._21.Domain.Tags
 {
    public interface ITagRepository : IGenericRepository<Tag>
    {

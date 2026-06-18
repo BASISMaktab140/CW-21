@@ -1,3 +1,3 @@
-namespace CW._21.Services.DTOs;
+namespace CW._21.Domain.DTOs;
 
 public record PublisherBookPriceDto(string PublisherName, string? BookTitle, decimal? Price);

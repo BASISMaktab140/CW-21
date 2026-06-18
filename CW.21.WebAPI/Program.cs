@@ -1,5 +1,10 @@
 
+using CW._21.Domain.Authors;
 using CW._21.Domain.Books;
+using CW._21.Domain.BookTags;
+using CW._21.Domain.Categories;
+using CW._21.Domain.Publishers;
+using CW._21.Domain.Tags;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Authors;
 using CW._21.Infrastructures.Repositories.Books;
