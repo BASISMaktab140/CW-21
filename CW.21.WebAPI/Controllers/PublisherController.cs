@@ -1,11 +1,11 @@
-using CW21.Presentation.Services.DTOs;
-using CW21.Presentation.Services.Publishers;
+
+using CW._21.Services.DTOs;
+using CW._21.Services.Publishers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CW._21.WebAPI.Controllers;
 
-public class PublisherController
-{
+
     [ApiController]
     [Route("Publishers")]
     public class PublishersController : ControllerBase
@@ -66,5 +66,10 @@ public class PublisherController
             var result = await _publisherService.DeletePublisherAsync(id);
             return result ? Ok() : NotFound();
         }
+
+        [HttpGet("GPMEBP")]
+        public async Task<IActionResult> GetPublisherMostExpensiveBookPrices()
+        {
+            return Ok(await _publisherService.GetPublisherMostExpensiveBookPrices());
+        }
     }
-}

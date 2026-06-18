@@ -1,15 +1,17 @@
-using CW21.Presentation.Data;
-using CW21.Presentation.Repositories.Authors;
-using CW21.Presentation.Repositories.Books;
-using CW21.Presentation.Repositories.BookTags;
-using CW21.Presentation.Repositories.Categories;
-using CW21.Presentation.Repositories.Publishers;
-using CW21.Presentation.Repositories.Tags;
-using CW21.Presentation.Services.Authors;
-using CW21.Presentation.Services.Books;
-using CW21.Presentation.Services.Categories;
-using CW21.Presentation.Services.Publishers;
-using CW21.Presentation.Services.Tags;
+
+using CW._21.Domain.Books;
+using CW._21.Infrastructures.Data;
+using CW._21.Infrastructures.Repositories.Authors;
+using CW._21.Infrastructures.Repositories.Books;
+using CW._21.Infrastructures.Repositories.BookTags;
+using CW._21.Infrastructures.Repositories.Categories;
+using CW._21.Infrastructures.Repositories.Publishers;
+using CW._21.Infrastructures.Repositories.Tags;
+using CW._21.Services.Authors;
+using CW._21.Services.Books;
+using CW._21.Services.Categories;
+using CW._21.Services.Publishers;
+using CW._21.Services.Tags;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

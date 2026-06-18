@@ -14,7 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CW21.Presentation\CW21.Presentation.csproj" />
+      <ProjectReference Include="..\CW.21.Infrastructure\CW.21.Infrastructure.csproj" />
+      <ProjectReference Include="..\CW.21.Service\CW.21.Service.csproj" />
     </ItemGroup>
 
     <ItemGroup>

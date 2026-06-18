@@ -1,0 +1,28 @@
+using System.Reflection;
+using CW._21.Domain.Authors;
+using CW._21.Domain.Books;
+using CW._21.Domain.BookTags;
+using CW._21.Domain.Categories;
+using CW._21.Domain.Tags;
+using Microsoft.EntityFrameworkCore;
+
+namespace CW._21.Infrastructures.Data;
+
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions options) : base(options)
+    {
+    }
+
+    public DbSet<Book> Books  { get; set; }
+    public DbSet<Author>Authors { get; set; }
+    public DbSet<Category> Categories {get; set;}
+    public DbSet<BookTag> BookTags   { get; set; }
+    public DbSet<Tag> Tags   { get; set; }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+    
+}

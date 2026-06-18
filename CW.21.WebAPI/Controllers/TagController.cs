@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using CW21.Presentation.Entities.Books;
-using CW21.Presentation.Entities.Tags;
-using CW21.Presentation.Repositories.Tags;
-using CW21.Presentation.Services.DTOs;
-using CW21.Presentation.Services.Tags;
+using CW._21.Domain.Tags;
+using CW._21.Services.DTOs;
+using CW._21.Services.DTOs.Books;
+using CW._21.Services.Tags;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CW._21.WebAPI.Controllers;
@@ -46,15 +45,7 @@ public class TagController : ControllerBase
         var result = _tagService.CreateTagAsync(tagDto.Name);
         return Ok(result);
     }
-
-    [HttpGet("{id:int}/Books")]
-    public async Task<ActionResult<List<BookInfoByTagDto>>> GetBooksByTagAsync([FromRoute] int tagId,
-        [FromQuery] int page,
-        [FromQuery]int pageSize)
-    {
-        var result = await _tagService.GetBooksByTagAsync(tagId, page, pageSize);
-        return Ok(result);
-    }
+    
 
     [HttpPost("{id:int}/Books")]
     public async Task<ActionResult> AddTagToBookAsync([FromRoute] int tagId,

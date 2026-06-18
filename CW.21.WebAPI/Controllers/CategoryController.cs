@@ -1,4 +1,4 @@
-﻿using CW21.Presentation.Services.Categories;
+﻿using CW._21.Services.Categories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CW._21.WebAPI.Controllers
@@ -30,17 +30,7 @@ namespace CW._21.WebAPI.Controllers
 
             return Ok(category);
         }
-
-        [HttpGet("{id:int}/books")]
-        public async Task<IActionResult> GetBooksByCategoryAsync([FromRoute] int id)
-        {
-            var result = await _categoryService.GetBooksByCategoryAsync(id);
-
-            if (result == null)
-                return NotFound();
-
-            return Ok(result);
-        }
+        
 
         [HttpGet("availableStock")]
         public async Task<IActionResult> GetCategoriesWithAvailableStockAsync()
