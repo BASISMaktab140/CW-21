@@ -366,3 +366,4 @@ obj/
 *.user
 *.suo
 *.vs
+.idea
