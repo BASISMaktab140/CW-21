@@ -1,3 +1,3 @@
-namespace CW._21.Services.DTOs.Books;
+namespace CW._21.Domain.DTOs.Books;
 
 public record BookInfoByAuthorDto(string Title, decimal Price , string PublisherName);

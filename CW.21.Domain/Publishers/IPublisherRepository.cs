@@ -1,8 +1,8 @@
-using CW._21.Domain.Publishers;
-using CW._21.Infrastructures.Repositories.Generics;
-using CW._21.Services.DTOs;
+using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Publishers;
+using CW._21.Domain.Generics;
 
-namespace CW._21.Infrastructures.Repositories.Publishers;
+namespace CW._21.Domain.Publishers;
 
 public interface IPublisherRepository : IGenericRepository<Publisher>
 {

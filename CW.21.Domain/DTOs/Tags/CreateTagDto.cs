@@ -1,4 +1,4 @@
-namespace CW._21.Services.DTOs;
+namespace CW._21.Domain.DTOs.Tags;
 
 
 public record CreateTagDto(string Name);

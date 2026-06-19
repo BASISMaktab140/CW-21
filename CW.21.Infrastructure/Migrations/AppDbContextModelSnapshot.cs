@@ -17,12 +17,12 @@ namespace CW21.Presentation.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.16")
+                .HasAnnotation("ProductVersion", "10.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Authors.Author", b =>
+            modelBuilder.Entity("CW._21.Domain.Authors.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,41 +46,9 @@ namespace CW21.Presentation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Country = "Romania",
-                            FullName = "Jon Skeet"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Country = "Germany",
-                            FullName = "Andrew Lock"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Country = "France",
-                            FullName = "Martin Fowler"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Country = "Italy",
-                            FullName = "Robert C. Martin"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Country = "Poland",
-                            FullName = "Julie Lerman"
-                        });
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.BookTags.BookTag", b =>
+            modelBuilder.Entity("CW._21.Domain.BookTags.BookTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,131 +69,9 @@ namespace CW21.Presentation.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("BookTags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BookId = 1,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BookId = 1,
-                            TagId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BookId = 1,
-                            TagId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BookId = 2,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BookId = 2,
-                            TagId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BookId = 3,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BookId = 3,
-                            TagId = 5
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BookId = 4,
-                            TagId = 4
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BookId = 4,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BookId = 5,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            BookId = 6,
-                            TagId = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            BookId = 7,
-                            TagId = 2
-                        },
-                        new
-                        {
-                            Id = 13,
-                            BookId = 7,
-                            TagId = 3
-                        },
-                        new
-                        {
-                            Id = 14,
-                            BookId = 7,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            Id = 15,
-                            BookId = 8,
-                            TagId = 3
-                        },
-                        new
-                        {
-                            Id = 16,
-                            BookId = 8,
-                            TagId = 4
-                        },
-                        new
-                        {
-                            Id = 17,
-                            BookId = 9,
-                            TagId = 3
-                        },
-                        new
-                        {
-                            Id = 18,
-                            BookId = 9,
-                            TagId = 4
-                        },
-                        new
-                        {
-                            Id = 19,
-                            BookId = 10,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            Id = 20,
-                            BookId = 11,
-                            TagId = 1
-                        });
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Books.Book", b =>
+            modelBuilder.Entity("CW._21.Domain.Books.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,6 +102,9 @@ namespace CW21.Presentation.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TagId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -269,252 +118,12 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("Books");
+                    b.HasIndex("TagId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = 5,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 769, DateTimeKind.Utc).AddTicks(5931),
-                            Price = 299.99m,
-                            PublishYear = 2024,
-                            PublisherId = 4,
-                            Stock = 50,
-                            Title = "EF Core Guide"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorId = 2,
-                            CategoryId = 3,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1577),
-                            Price = 199.99m,
-                            PublishYear = 2023,
-                            PublisherId = 2,
-                            Stock = 35,
-                            Title = "ASP.NET Core Basics"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AuthorId = 4,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1586),
-                            Price = 249.99m,
-                            PublishYear = 2008,
-                            PublisherId = 3,
-                            Stock = 40,
-                            Title = "Clean Code"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AuthorId = 3,
-                            CategoryId = 4,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1593),
-                            Price = 279.99m,
-                            PublishYear = 2018,
-                            PublisherId = 1,
-                            Stock = 20,
-                            Title = "Refactoring"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AuthorId = 1,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1654),
-                            Price = 320.00m,
-                            PublishYear = 2019,
-                            PublisherId = 3,
-                            Stock = 45,
-                            Title = "C# in Depth"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AuthorId = 5,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1670),
-                            Price = 180.50m,
-                            PublishYear = 2022,
-                            PublisherId = 4,
-                            Stock = 28,
-                            Title = "SQL Server Essentials"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AuthorId = 5,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1676),
-                            Price = 310.75m,
-                            PublishYear = 2021,
-                            PublisherId = 2,
-                            Stock = 18,
-                            Title = "Entity Framework Mastery"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AuthorId = 2,
-                            CategoryId = 3,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1683),
-                            Price = 270.00m,
-                            PublishYear = 2020,
-                            PublisherId = 1,
-                            Stock = 33,
-                            Title = "Designing REST APIs"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AuthorId = 3,
-                            CategoryId = 4,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1689),
-                            Price = 350.00m,
-                            PublishYear = 2024,
-                            PublisherId = 3,
-                            Stock = 22,
-                            Title = "Microservices Fundamentals"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AuthorId = 1,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1700),
-                            Price = 210.25m,
-                            PublishYear = 2021,
-                            PublisherId = 2,
-                            Stock = 26,
-                            Title = "LINQ Deep Dive"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            AuthorId = 1,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1707),
-                            Price = 330.00m,
-                            PublishYear = 2022,
-                            PublisherId = 1,
-                            Stock = 31,
-                            Title = "Advanced C#"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            AuthorId = 3,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1713),
-                            Price = 240.99m,
-                            PublishYear = 2020,
-                            PublisherId = 4,
-                            Stock = 19,
-                            Title = "NoSQL for Developers"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            AuthorId = 2,
-                            CategoryId = 3,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1719),
-                            Price = 289.99m,
-                            PublishYear = 2023,
-                            PublisherId = 3,
-                            Stock = 37,
-                            Title = "Backend Development with .NET"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            AuthorId = 5,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1726),
-                            Price = 260.00m,
-                            PublishYear = 2019,
-                            PublisherId = 1,
-                            Stock = 24,
-                            Title = "Database Design Principles"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AuthorId = 4,
-                            CategoryId = 4,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1733),
-                            Price = 295.00m,
-                            PublishYear = 2017,
-                            PublisherId = 2,
-                            Stock = 29,
-                            Title = "Clean Architecture"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            AuthorId = 2,
-                            CategoryId = 3,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1739),
-                            Price = 205.50m,
-                            PublishYear = 2021,
-                            PublisherId = 4,
-                            Stock = 17,
-                            Title = "Practical Dependency Injection"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            AuthorId = 3,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1745),
-                            Price = 275.75m,
-                            PublishYear = 2022,
-                            PublisherId = 2,
-                            Stock = 21,
-                            Title = "Mastering PostgreSQL"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            AuthorId = 4,
-                            CategoryId = 4,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1755),
-                            Price = 315.25m,
-                            PublishYear = 2020,
-                            PublisherId = 3,
-                            Stock = 27,
-                            Title = "Software Engineering Patterns"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            AuthorId = 2,
-                            CategoryId = 3,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1761),
-                            Price = 285.40m,
-                            PublishYear = 2024,
-                            PublisherId = 1,
-                            Stock = 32,
-                            Title = "Building APIs with ASP.NET Core"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            AuthorId = 5,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2026, 5, 29, 11, 37, 5, 770, DateTimeKind.Utc).AddTicks(1768),
-                            Price = 230.00m,
-                            PublishYear = 2023,
-                            PublisherId = 4,
-                            Stock = 23,
-                            Title = "Data Access in .NET"
-                        });
+                    b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Categories.Category", b =>
+            modelBuilder.Entity("CW._21.Domain.Categories.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -533,31 +142,112 @@ namespace CW21.Presentation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Programming"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Database"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Backend"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Architecture"
-                        });
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Publishers.Publisher", b =>
+            modelBuilder.Entity("CW._21.Domain.Customers.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Fullname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.OrderItems.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(12,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId")
+                        .IsUnique();
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("OrderId1");
+
+                    b.ToTable("OrderItem");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.Orders.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId1")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(12,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("CustomerId1");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.Publishers.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -589,41 +279,18 @@ namespace CW21.Presentation.Migrations
                         .IsUnique();
 
                     b.ToTable("Publisher");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Packt"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "O'Reilly"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Manning"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Apress"
-                        });
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Tags.Tag", b =>
+            modelBuilder.Entity("CW._21.Domain.Tags.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -637,18 +304,18 @@ namespace CW21.Presentation.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.BookTags.BookTag", b =>
+            modelBuilder.Entity("CW._21.Domain.BookTags.BookTag", b =>
                 {
-                    b.HasOne("CW21.Presentation.Entities.Books.Book", "Book")
+                    b.HasOne("CW._21.Domain.Books.Book", "Book")
                         .WithMany("BookTags")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CW21.Presentation.Entities.Tags.Tag", "Tag")
+                    b.HasOne("CW._21.Domain.Tags.Tag", "Tag")
                         .WithMany("BookTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -659,25 +326,29 @@ namespace CW21.Presentation.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Books.Book", b =>
+            modelBuilder.Entity("CW._21.Domain.Books.Book", b =>
                 {
-                    b.HasOne("CW21.Presentation.Entities.Authors.Author", "Author")
+                    b.HasOne("CW._21.Domain.Authors.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CW21.Presentation.Entities.Categories.Category", "Category")
+                    b.HasOne("CW._21.Domain.Categories.Category", "Category")
                         .WithMany("Books")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CW21.Presentation.Entities.Publishers.Publisher", "Publisher")
+                    b.HasOne("CW._21.Domain.Publishers.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("CW._21.Domain.Tags.Tag", null)
+                        .WithMany("Books")
+                        .HasForeignKey("TagId");
 
                     b.Navigation("Author");
 
@@ -686,29 +357,83 @@ namespace CW21.Presentation.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Authors.Author", b =>
+            modelBuilder.Entity("CW._21.Domain.OrderItems.OrderItem", b =>
+                {
+                    b.HasOne("CW._21.Domain.Books.Book", "Book")
+                        .WithOne()
+                        .HasForeignKey("CW._21.Domain.OrderItems.OrderItem", "BookId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CW._21.Domain.Orders.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CW._21.Domain.Orders.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.Orders.Order", b =>
+                {
+                    b.HasOne("CW._21.Domain.Customers.Customer", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CW._21.Domain.Customers.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.Authors.Author", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Books.Book", b =>
+            modelBuilder.Entity("CW._21.Domain.Books.Book", b =>
                 {
                     b.Navigation("BookTags");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Categories.Category", b =>
+            modelBuilder.Entity("CW._21.Domain.Categories.Category", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Publishers.Publisher", b =>
+            modelBuilder.Entity("CW._21.Domain.Customers.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.Orders.Order", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.Publishers.Publisher", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("CW21.Presentation.Entities.Tags.Tag", b =>
+            modelBuilder.Entity("CW._21.Domain.Tags.Tag", b =>
                 {
                     b.Navigation("BookTags");
+
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,6 @@
 using CW._21.Domain.Categories;
 
-namespace CW._21.Services.DTOs;
+namespace CW._21.Domain.DTOs.Categories;
 
 public record CategoryDetailDto(string CategoryName, List<string> BookNames, List<string> AuthorsFullName);
 public record CategoryWithCountDto(string CategoryName, int BookCount);

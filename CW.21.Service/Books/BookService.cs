@@ -1,7 +1,7 @@
+using CW._21.Domain.Authors;
 using CW._21.Domain.Books;
-using CW._21.Infrastructures.Repositories.Authors;
-using CW._21.Infrastructures.Repositories.Categories;
-using CW._21.Services.DTOs.Books;
+using CW._21.Domain.Categories;
+using CW._21.Domain.DTOs.Books;
 using CW._21.Services.Mappers;
 
 namespace CW._21.Services.Books;

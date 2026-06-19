@@ -1,4 +1,4 @@
-namespace CW._21.Services.DTOs.Books;
+namespace CW._21.Domain.DTOs.Books;
 
 
 public record BookDetailDto(string Title,decimal Price, int Stock, 

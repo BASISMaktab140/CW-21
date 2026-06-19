@@ -1,5 +1,5 @@
 using CW._21.Domain.Books;
-using CW._21.Services.DTOs.Books;
+using CW._21.Domain.DTOs.Books;
 
 namespace CW._21.Services.Books;
 

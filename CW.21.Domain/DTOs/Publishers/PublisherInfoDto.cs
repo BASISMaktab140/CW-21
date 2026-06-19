@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using CW._21.Domain.Publishers;
 
-namespace CW._21.Services.DTOs;
+namespace CW._21.Domain.DTOs.Publishers;
 
 public record PublisherInfoDto(
     string PublisherName,

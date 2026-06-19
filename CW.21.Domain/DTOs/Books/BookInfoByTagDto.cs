@@ -1,4 +1,4 @@
-﻿namespace CW._21.Services.DTOs.Books
+﻿namespace CW._21.Domain.DTOs.Books
 {
     public record BookInfoByTagDto(string AuthorFullName, string BookName, decimal BookPrice);
     

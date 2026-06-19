@@ -1,4 +1,4 @@
-namespace CW21.Presentation.Commons;
+namespace CW._21.WebAPI.Commons;
 
 public class ApiResult<T>
 {

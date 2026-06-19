@@ -1,7 +1,6 @@
-using CW._21.Domain.BookTags;
-using CW._21.Infrastructures.Repositories.Generics;
+using CW._21.Domain.Generics;
 
-namespace CW._21.Infrastructures.Repositories.BookTags;
+namespace CW._21.Domain.BookTags;
 
 public interface IBookTagRepository : IGenericRepository<BookTag>
 {

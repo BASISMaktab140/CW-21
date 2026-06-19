@@ -1,5 +1,6 @@
-using CW._21.Infrastructures.Repositories.Categories;
-using CW._21.Services.DTOs;
+using CW._21.Domain.Categories;
+using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Categories;
 
 namespace CW._21.Services.Categories;
 

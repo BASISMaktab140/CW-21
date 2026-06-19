@@ -1,4 +1,4 @@
-﻿namespace CW._21.Services.DTOs
+﻿namespace CW._21.Domain.DTOs.Authors
 {
     public record AuthorCreateDto(string FullName, int? BirthYear,string Country);
 }

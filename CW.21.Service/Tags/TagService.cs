@@ -1,10 +1,8 @@
 ﻿using CW._21.Domain.Books;
 using CW._21.Domain.BookTags;
+using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Tags;
 using CW._21.Domain.Tags;
-using CW._21.Infrastructures.Repositories.BookTags;
-using CW._21.Infrastructures.Repositories.Tags;
-using CW._21.Services.DTOs;
-using CW._21.Services.DTOs.Books;
 
 namespace CW._21.Services.Tags
 {
