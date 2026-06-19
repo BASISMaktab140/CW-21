@@ -1,4 +1,5 @@
 ﻿using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Tags;
 using CW._21.Domain.Tags;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;

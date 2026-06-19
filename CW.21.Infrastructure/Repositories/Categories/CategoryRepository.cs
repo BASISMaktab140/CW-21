@@ -1,5 +1,6 @@
 using CW._21.Domain.Categories;
 using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Categories;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;
 using Microsoft.EntityFrameworkCore;

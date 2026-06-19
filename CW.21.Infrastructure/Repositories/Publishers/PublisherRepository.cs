@@ -1,4 +1,5 @@
 using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Publishers;
 using CW._21.Domain.Publishers;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;

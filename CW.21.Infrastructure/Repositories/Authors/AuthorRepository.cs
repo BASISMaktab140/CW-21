@@ -1,5 +1,6 @@
 using CW._21.Domain.Authors;
 using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Authors;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;
 using Microsoft.EntityFrameworkCore;

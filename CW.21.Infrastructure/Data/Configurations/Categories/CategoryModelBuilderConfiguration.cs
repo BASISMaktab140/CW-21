@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CW._21.Infrastructures.Data.Configurations.Categories;
 
-public class CategoryModelConfiguration : BaseModelBuilderConfiguration<Category>
+public class CategoryModelBuilderConfiguration : BaseModelBuilderConfiguration<Category>
 {
     protected override void ApplyEntityConfiguration(EntityTypeBuilder<Category> modelBuilder)
     {

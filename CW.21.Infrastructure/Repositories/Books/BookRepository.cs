@@ -48,7 +48,7 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
                 , book.BookTags.Select(t => t.Tag).ToList())).ToListAsync();
         
     }
-
+    
     public async Task<List<Book>?> GetBooksWithMinimumPriceAsync(int minimumQuantity)
     {
         var averagePrice = await  _dbSet.AverageAsync(b => b.Price);
