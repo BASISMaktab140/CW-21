@@ -1,4 +1,5 @@
 using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Publishers;
 
 namespace CW._21.Services.Publishers;
 

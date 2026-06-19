@@ -1,4 +1,5 @@
 using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Publishers;
 using CW._21.Services.Publishers;
 using CW._21.WebAPI.Commons;
 using CW._21.WebAPI.Exceptions;

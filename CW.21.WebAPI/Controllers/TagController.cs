@@ -1,4 +1,5 @@
 using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Tags;
 using CW._21.Services.Tags;
 using CW._21.WebAPI.Commons;
 using CW._21.WebAPI.Exceptions;

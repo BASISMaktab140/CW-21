@@ -1,6 +1,7 @@
 ﻿using CW._21.Domain.Books;
 using CW._21.Domain.BookTags;
 using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Tags;
 using CW._21.Domain.Tags;
 
 namespace CW._21.Services.Tags

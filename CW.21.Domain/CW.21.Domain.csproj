@@ -11,4 +11,8 @@
       <ProjectReference Include="..\Cw.21.Abstraction\Cw.21.Abstraction.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DTOs\Customers\" />
+    </ItemGroup>
+
 </Project>

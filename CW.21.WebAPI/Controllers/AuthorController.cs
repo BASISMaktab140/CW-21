@@ -1,4 +1,5 @@
 ﻿using CW._21.Domain.DTOs;
+using CW._21.Domain.DTOs.Authors;
 using CW._21.Services.Authors;
 using CW._21.WebAPI.Commons;
 using CW._21.WebAPI.Exceptions;
