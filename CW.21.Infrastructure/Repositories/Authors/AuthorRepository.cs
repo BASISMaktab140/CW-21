@@ -15,7 +15,7 @@ public class AuthorRepository : GenericRepository<Author> , IAuthorRepository
 
     public async Task<List<AuthorBookCountDto>> GetAuthorsBooksCountAsync()
     {
-        return await _dbSet
+        return await DbSet
             .Select(a => new AuthorBookCountDto(
                 a.Id,
                 a.FullName,
@@ -26,7 +26,7 @@ public class AuthorRepository : GenericRepository<Author> , IAuthorRepository
 
     public async Task<AuthorInfoDto?> GetAuthorInfoAsync(int id)
     {
-        return await _dbSet
+        return await DbSet
             .Select(a => new AuthorInfoDto(
                 a.Id,
                 a.FullName,
@@ -38,7 +38,7 @@ public class AuthorRepository : GenericRepository<Author> , IAuthorRepository
 
     public async Task<List<AuthorInfoDto>> GetAuthorsWithMultipleBooksAsync()
     {
-        return await _dbSet
+        return await DbSet
             .Where(a => a.Books.Count() > 2)
             .Select(a => new AuthorInfoDto(
                 a.Id,
@@ -51,7 +51,7 @@ public class AuthorRepository : GenericRepository<Author> , IAuthorRepository
 
     public async Task<List<AuthorInfoDto>> FindAuthorByNameAsync(string name)
     {
-        return await _dbSet
+        return await DbSet
             .Where(a => a.FullName.Contains(name))
             .Select(a => new AuthorInfoDto(
                 a.Id,

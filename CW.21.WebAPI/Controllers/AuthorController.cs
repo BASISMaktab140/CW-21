@@ -1,8 +1,8 @@
 ﻿using CW._21.Domain.DTOs;
 using CW._21.Domain.DTOs.Authors;
+using CW._21.Domain.Exceptions;
 using CW._21.Services.Authors;
 using CW._21.WebAPI.Commons;
-using CW._21.WebAPI.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CW._21.WebAPI.Controllers;

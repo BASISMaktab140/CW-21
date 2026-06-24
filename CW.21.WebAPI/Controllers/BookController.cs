@@ -1,7 +1,7 @@
 using CW._21.Domain.DTOs.Books;
+using CW._21.Domain.Exceptions;
 using CW._21.Services.Books;
 using CW._21.WebAPI.Commons;
-using CW._21.WebAPI.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CW._21.WebAPI.Controllers;

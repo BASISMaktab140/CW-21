@@ -5,7 +5,13 @@
 // using CW._21.Domain.Publishers;
 //
 // namespace CW._21.Infrastructures.Data.SeedData;
-//
+
+
+// customers and orders seed data
+
+
+
+
 // public static class SeedData
 // {
 //     public static readonly List<Author> Authors = new()
