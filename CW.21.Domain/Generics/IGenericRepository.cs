@@ -1,10 +1,22 @@
 using System.Linq.Expressions;
 using Cw._21.Abstraction;
+using CW._21.Domain.Customers;
 
 namespace CW._21.Domain.Generics;
 
 public interface IGenericRepository<TEntity> where TEntity : BaseEntity
 {
+    /// <summary>
+    /// Gets all records based on a condition
+    /// </summary>
+    /// <param name="predicate"></param>
+    /// <returns></returns>
+    IQueryable<TEntity> GetAllQueryable(Expression<Func<TEntity, bool>>? predicate = null);
+    
+    Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? predicate = null);
+    
+    Task<TEntity?> GetByIdAsync(int id, bool tracking = false);
+    
     /// <summary>
     /// Add an entity
     /// </summary>
@@ -32,15 +44,8 @@ public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     /// <param name="id"></param>
     /// <param name="tracking"></param>
     /// <returns></returns>
-    Task<TEntity?> GetByIdAsync(int id, bool tracking = false);
 
-    /// <summary>
-    /// Gets all records based on a condition
-    /// </summary>
-    /// <param name="predicate"></param>
-    /// <returns></returns>
-    IQueryable<TEntity> GetAllQueryable(Expression<Func<TEntity, bool>>? predicate = null);
-    
-    Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? predicate = null);
+   
+
     
 }

@@ -15,7 +15,7 @@ namespace CW._21.Infrastructures.Repositories.Tags
 
         public async Task<List<TagInfoDto>> GetAllTagsAsync(int page, int pageSize)
         {
-            return await  _dbSet.AsNoTracking()
+            return await  DbSet.AsNoTracking()
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(tag => new TagInfoDto(

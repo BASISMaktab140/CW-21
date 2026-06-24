@@ -1,4 +1,4 @@
-namespace CW._21.WebAPI.Exceptions;
+namespace CW._21.Domain.Exceptions;
 
 public class NotFoundException : Exception
 {

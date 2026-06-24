@@ -1,4 +1,6 @@
+using CW._21.Domain.Books;
 using CW._21.Domain.DTOs.Orders;
+using CW._21.Domain.OrderItems;
 using CW._21.Domain.Orders;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;
@@ -14,7 +16,7 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
 
     public async Task<List<OrdersByCustomerDto>> GetOrdersByCustomerAsync(int customerId)
     {
-        return await _dbSet
+        return await DbSet
             .Where(b => b.CustomerId == customerId)
             .Select(o => new OrdersByCustomerDto(o.OrderDate, o.TotalAmount, o.Status))
             .ToListAsync();
@@ -22,7 +24,7 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
 
     public async Task<OrderWithItemsDto?> GetOrderWithItemsAsync(int orderId)
     {
-        return await _dbSet
+        return await DbSet
             .Where(o => o.Id == orderId)
             .Select(o => new OrderWithItemsDto(o.OrderDate, o.Customer,
                 o.OrderItems.First(oi => oi.OrderId == orderId), o.OrderItems.First(oi => oi.OrderId == orderId).Book))
@@ -31,23 +33,20 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
 
     public async Task<List<AllOrderDto>> GetAllOrdersAsync()
     {
-        return await _dbSet
+        return await DbSet
             .Select(o => new AllOrderDto(o.OrderDate, o.TotalAmount, o.Status, o.Customer.Fullname))
             .ToListAsync();
     }
 
-    public Task<OrderWithDetailDto> GetOrderDetailsAsync(int orderId)
+    public async Task<List<OrderWithDetailDto>> GetOrderDetailsAsync(int orderId)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task CreateOrderAsync(int customerId, List<(int bookId, int quantity)> items)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateOrderStatusAsync(int orderId, string status)
-    {
-        throw new NotImplementedException();
+        var order = await DbSet.FirstOrDefaultAsync(o => o.Id == orderId);
+        var orderDetails = new List<OrderWithDetailDto>();
+        foreach (var orderItem in order.OrderItems)
+        {
+            orderDetails.Add(new OrderWithDetailDto(orderItem.Quantity, orderItem.UnitPrice, orderItem.Book));
+        }
+        return orderDetails;
+        
     }
 }
