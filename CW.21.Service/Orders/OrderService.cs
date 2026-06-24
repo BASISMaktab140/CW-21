@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices.JavaScript;
 using CW._21.Domain.Books;
+using CW._21.Domain.Customers;
 using CW._21.Domain.DTOs.OrderItems;
 using CW._21.Domain.DTOs.Orders;
 using CW._21.Domain.OrderItems;
@@ -11,17 +12,20 @@ public class OrderService : IOrderService
 {
     private readonly IOrderRepository _orderRepository;
     private readonly IBookRepository _bookRepository;
-    
+    private readonly ICustomerRepository _customerRepository;
 
-    public OrderService(IOrderRepository orderRepository, IBookRepository bookRepository)
+
+    public OrderService(IOrderRepository orderRepository, IBookRepository bookRepository,
+        ICustomerRepository customerRepository)
     {
         _orderRepository = orderRepository;
         _bookRepository = bookRepository;
+        _customerRepository = customerRepository;
     }
 
     public async Task<List<AllOrderDto>> GetAllOrdersAsync()
     {
-       return await _orderRepository.GetAllOrdersAsync();
+        return await _orderRepository.GetAllOrdersAsync();
     }
 
     public async Task<OrderWithDetailDto> GetOrderDetailsAsync(int orderId)

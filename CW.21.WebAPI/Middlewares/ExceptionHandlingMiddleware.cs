@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.Json;
+using CW._21.Domain.Exceptions;
 using CW._21.WebAPI.Commons;
-using CW._21.WebAPI.Exceptions;
 
 namespace CW._21.WebAPI.Middlewares;
 
@@ -32,10 +32,16 @@ public class ExceptionHandlingMiddleware
             _logger.LogWarning("BadRequestException: {Message}", ex.Message);
             await WriteErrorResponse(context, ex.Message, HttpStatusCode.BadRequest);
         }
+        catch (UnauthorizedException ex)
+        {
+            _logger.LogWarning("UnauthorizedException: {Message}", ex.Message);
+            await WriteErrorResponse(context, ex.Message, HttpStatusCode.Unauthorized);
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Unhandled exception occurred.");
-            await WriteErrorResponse(context, "An unexpected error occurred. Please try again later.", HttpStatusCode.InternalServerError);
+            await WriteErrorResponse(context, "An unexpected error occurred. Please try again later.",
+                HttpStatusCode.InternalServerError);
         }
     }
 

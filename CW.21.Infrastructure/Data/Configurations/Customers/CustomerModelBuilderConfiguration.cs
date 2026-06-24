@@ -15,5 +15,11 @@ public class CustomerModelBuilderConfiguration : BaseModelBuilderConfiguration<C
         
         modelBuilder.HasIndex(c => c.Email)
             .IsUnique();
+        
+        modelBuilder.HasIndex(c => c.Username)
+            .IsUnique();
+        
+        modelBuilder.Property(c => c.PasswordHash)
+            .HasColumnType("nvarchar(256)");
     }
 }

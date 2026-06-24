@@ -1,4 +1,3 @@
-using CW._21.Domain.DTOs.Books;
 using CW._21.Domain.DTOs.Orders;
 using CW._21.Domain.Orders;
 using CW._21.Infrastructures.Data;
@@ -15,7 +14,7 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
 
     public async Task<List<OrdersByCustomerDto>> GetOrdersByCustomerAsync(int customerId)
     {
-        return await _dbSet
+        return await DbSet
             .Where(b => b.CustomerId == customerId)
             .Select(o => new OrdersByCustomerDto(
                 o.OrderDate, 
@@ -26,7 +25,7 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
 
     public async Task<OrderWithItemsDto?> GetOrderWithItemsAsync(int orderId)
     {
-        return await _dbSet
+        return await DbSet
             .Where(o => o.Id == orderId)
             .Select(o => new OrderWithItemsDto(o.OrderDate, o.Customer,
                 o.OrderItems.First(oi => oi.OrderId == orderId), o.OrderItems.First(oi => oi.OrderId == orderId).Book))
@@ -35,14 +34,14 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
 
     public async Task<List<AllOrderDto>> GetAllOrdersAsync()
     {
-        return await _dbSet
+        return await DbSet
             .Select(o => new AllOrderDto(o.OrderDate, o.TotalAmount, o.Status, o.Customer.Fullname))
             .ToListAsync();
     }
 
     public async Task<OrderWithDetailDto> GetOrderDetailsAsync(int orderId)
     {
-        return await _dbSet
+        return await DbSet
             .Where(o => o.Id == orderId)
             .Select(o => new OrderWithDetailDto(
                 o.OrderDate,
