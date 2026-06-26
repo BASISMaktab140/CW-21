@@ -24,6 +24,7 @@ using CW._21.Services.Categories;
 using CW._21.Services.Customers;
 using CW._21.Services.Orders;
 using CW._21.Services.Publishers;
+using CW._21.Services.Redis;
 using CW._21.Services.Tags;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+    options.InstanceName = "BookStore:";
+});
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -65,6 +73,8 @@ builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IRedisService, RedisService>();
+
 
 var app = builder.Build();
 
