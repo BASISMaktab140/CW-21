@@ -367,3 +367,4 @@ obj/
 *.suo
 *.vs
 .idea
+.ai/
