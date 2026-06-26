@@ -3,6 +3,7 @@ using CW._21.Domain.Books;
 using CW._21.Domain.Categories;
 using CW._21.Domain.DTOs.Books;
 using CW._21.Services.Mappers;
+using CW._21.Services.Redis;
 
 namespace CW._21.Services.Books;
 
@@ -11,17 +12,38 @@ public class BookService : IBookService
     private IBookRepository _bookRepository;
     private ICategoryRepository _categoryRepository;
     private IAuthorRepository _authorRepository;
+    private readonly IRedisService _redisService;
 
-    
+
     public BookService(IBookRepository bookRepository, ICategoryRepository categoryRepository,
-        IAuthorRepository authorRepository) {
+        IAuthorRepository authorRepository, IRedisService redisService) {
         _categoryRepository = categoryRepository;
         _bookRepository = bookRepository;
         _authorRepository = authorRepository;
+        _redisService = redisService;
     }
+    
+    // Without Using Redis
+    // public async Task<List<BookDetailDto>> GetAllBooksWithDetailsAsync()
+    // {
+    //     return await _bookRepository.GetAllBooksWithDetailsAsync();
+    // }
+    
+    
+    // Using Redis
     public async Task<List<BookDetailDto>> GetAllBooksWithDetailsAsync()
     {
-        return await _bookRepository.GetAllBooksWithDetailsAsync();
+        const string cacheKey = "books:all";
+
+        var cached = await _redisService.GetAsync<List<BookDetailDto>>(cacheKey);
+        if (cached is not null)
+            return cached;
+
+        var books = await _bookRepository.GetAllBooksWithDetailsAsync();
+
+        await _redisService.SetAsync(cacheKey, books, TimeSpan.FromMinutes(10));
+
+        return books;
     }
 
     public async Task<BookInfoDto> GetBookByIdAsync(int id)
