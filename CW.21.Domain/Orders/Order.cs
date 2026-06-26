@@ -35,7 +35,7 @@ public class Order : BaseEntity
     public int CustomerId { get; set; }
     
     [Required]
-    public DateTime OrderDate { get; set; }
+    public DateTime OrderDate { get; set; } = DateTime.UtcNow;
     
     [Required]
     public decimal TotalAmount { get; set; }

@@ -15,14 +15,14 @@ public class PublisherRepository : GenericRepository<Publisher> , IPublisherRepo
 
     public async Task<List<PublisherBookCountDto>> GetAllPublishersWithMinimumBooks(int minimumBooks)
     {
-        return await _dbSet
+        return await DbSet
             .Select(publisher =>new PublisherBookCountDto(publisher.Name,
                 publisher.Books.Count())).ToListAsync();
     }
 
     public async Task<List<PublisherDetailDto>> GetAllPublisherBooksDetails()
     {
-        return await  _dbSet
+        return await  DbSet
             .Select(publisher => new PublisherDetailDto(publisher.Name,
             publisher.Books.Count(),
             publisher.Books.Sum(b => b.Stock),
@@ -32,7 +32,7 @@ public class PublisherRepository : GenericRepository<Publisher> , IPublisherRepo
 
     public async Task<List<PublisherBookPriceDto>> GetPublisherMostExpensiveBookPrices()
     {
-        return await _dbSet
+        return await DbSet
             .Where(p => p.Books.Any())
             .Select(p => new
             {
@@ -51,7 +51,7 @@ public class PublisherRepository : GenericRepository<Publisher> , IPublisherRepo
 
     public async Task<PublisherInfoDto?> GetPublisherByIdAsync(int id)
     {
-        return await   _dbSet
+        return await   DbSet
             .Where(p => p.Id == id)
             .Select(publisher => new PublisherInfoDto(publisher.Name, publisher.City, publisher.Books.Count(),
             publisher.Books.Select(b => b.Title).ToList())).FirstOrDefaultAsync();

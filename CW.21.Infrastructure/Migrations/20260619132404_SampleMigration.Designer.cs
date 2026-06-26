@@ -4,16 +4,19 @@ using CW._21.Infrastructures.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CW21.Presentation.Migrations
+namespace CW._21.Infrastructures.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260619132404_SampleMigration")]
+    partial class SampleMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("CW._21.Domain.BookTags.BookTag", b =>
@@ -68,7 +71,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("BookTags", (string)null);
+                    b.ToTable("BookTags");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Books.Book", b =>
@@ -120,7 +123,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Categories.Category", b =>
@@ -141,7 +144,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Customers.Customer", b =>
@@ -175,7 +178,7 @@ namespace CW21.Presentation.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("CW._21.Domain.OrderItems.OrderItem", b =>
@@ -210,7 +213,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("OrderId1");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Orders.Order", b =>
@@ -244,7 +247,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("CustomerId1");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Publishers.Publisher", b =>
@@ -278,7 +281,7 @@ namespace CW21.Presentation.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Publishers", (string)null);
+                    b.ToTable("Publisher");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Tags.Tag", b =>

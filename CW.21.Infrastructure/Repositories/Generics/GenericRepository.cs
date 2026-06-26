@@ -8,49 +8,17 @@ namespace CW._21.Infrastructures.Repositories.Generics;
 
 public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
 {
-    protected readonly AppDbContext _context;
-    protected readonly DbSet<TEntity> _dbSet;
+    protected readonly AppDbContext Context;
+    protected readonly DbSet<TEntity> DbSet;
 
     protected GenericRepository(AppDbContext context)
     {
-        _context = context;
-        _dbSet = context.Set<TEntity>();
+        Context = context;
+        DbSet = context.Set<TEntity>();
     }
-
-    public async Task AddAsync(TEntity entity)
-    {
-        await _dbSet.AddAsync(entity);
-        await SaveChangesAsync();
-    }
-
-    public async Task UpdateAsync(TEntity entity)
-    {
-        _dbSet.Update(entity);
-        await SaveChangesAsync();
-    }
-
-    public async Task DeleteAsync(int id)
-    {
-        var entity = await _dbSet.FindAsync(id);
-
-        if(entity == null)
-            return;
-        _dbSet.Remove(entity);
-        await SaveChangesAsync();
-    }
-
-    public async Task<TEntity?> GetByIdAsync(int id, bool tracking = false)
-    {
-        var query = _dbSet.AsQueryable<TEntity>();
-
-        if(tracking)
-            query = query.AsTracking();
-        return await query.FirstOrDefaultAsync(e => e.Id == id);
-    }
-
     public IQueryable<TEntity> GetAllQueryable(Expression<Func<TEntity, bool>>? predicate = null)
     {
-        IQueryable<TEntity> query = _dbSet;
+        IQueryable<TEntity> query = DbSet;
 
         if (predicate != null)
             query = query.Where(predicate);
@@ -59,15 +27,46 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
 
     public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? predicate = null)
     {
-        IQueryable<TEntity> query = _dbSet;
+        IQueryable<TEntity> query = DbSet;
 
         if (predicate != null)
             query = query.Where(predicate);
         return await query.ToListAsync();
     }
+   
+    public async Task<TEntity?> GetByIdAsync(int id, bool tracking = false)
+    {
+        var query = DbSet.AsQueryable<TEntity>();
+
+        if(tracking)
+            query = query.AsTracking();
+        return await query.FirstOrDefaultAsync(e => e.Id == id);
+    }
+
+    public async Task AddAsync(TEntity entity)
+    {
+        await DbSet.AddAsync(entity);
+        await SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(TEntity entity)
+    {
+        DbSet.Update(entity);
+        await SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var entity = await DbSet.FindAsync(id);
+
+        if(entity == null)
+            return;
+        DbSet.Remove(entity);
+        await SaveChangesAsync();
+    }
 
     public async Task<int> SaveChangesAsync()
     {
-        return await _context.SaveChangesAsync();
+       return await Context.SaveChangesAsync();
     }
 }

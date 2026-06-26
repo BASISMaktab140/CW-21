@@ -15,7 +15,7 @@ public class CategoryRepository : GenericRepository<Category>, ICategoryReposito
 
     public async Task<List<CategoryDetailDto>> GetAllCategoriesAsync()
     {
-        return await _dbSet
+        return await DbSet
             .Select(c => new CategoryDetailDto(c.Name,
                 c.Books.Select(b => b.Title).ToList(),
                 c.Books.Select(b => b.Author.FullName).ToList()))
@@ -24,7 +24,7 @@ public class CategoryRepository : GenericRepository<Category>, ICategoryReposito
 
     public async Task<CategoryDetailDto?> GetCategoryByIdAsync(int id)
     {
-        return await _dbSet
+        return await DbSet
             .Where(c => c.Id == id)
             .Select(c => new CategoryDetailDto(c.Name,
                 c.Books.Select(b => b.Title).ToList(),
@@ -35,7 +35,7 @@ public class CategoryRepository : GenericRepository<Category>, ICategoryReposito
    
     public async Task<List<CategoryDetailDto>> GetCategoriesWithAvailableStockAsync()
     {
-        return await  _dbSet
+        return await  DbSet
             .Where(c => c.Books.Any(b => b.Stock > 0))
             .Select(category => new CategoryDetailDto(category.Name,
             category.Books.Select( b=> b.Title).ToList(),
@@ -45,7 +45,7 @@ public class CategoryRepository : GenericRepository<Category>, ICategoryReposito
 
     public async Task<List<CategoryWithCountDto>> GetCategoriesWithBook()
     {
-        return await  _dbSet
+        return await  DbSet
             .Select(category => 
             new CategoryWithCountDto(category.Name, category.Books.Count))
             .ToListAsync();    }
