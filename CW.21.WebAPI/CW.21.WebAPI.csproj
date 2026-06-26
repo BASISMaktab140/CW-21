@@ -9,11 +9,16 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CW.21.Domain\CW.21.Domain.csproj" />
       <ProjectReference Include="..\CW.21.Infrastructure\CW.21.Infrastructure.csproj" />
       <ProjectReference Include="..\CW.21.Service\CW.21.Service.csproj" />
     </ItemGroup>

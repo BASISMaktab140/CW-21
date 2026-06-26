@@ -11,6 +11,14 @@ public class OrderItem : BaseEntity
     {
         
     }
+
+    public OrderItem(int bookId, int quantity, decimal unitPrice)
+    {
+        BookId = bookId;
+        Quantity = quantity;
+        UnitPrice = unitPrice;
+    }
+
     public OrderItem(int orderId, int bookId, int quantity, decimal unitPrice, Order order, Book book)
     {
         OrderId = orderId;

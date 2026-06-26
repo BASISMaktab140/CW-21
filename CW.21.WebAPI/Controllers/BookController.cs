@@ -21,14 +21,16 @@ public class BookController : ControllerBase
     public async Task<IActionResult> GetBooksAsync()
     {
         var books = await _bookService.GetAllBooksWithDetailsAsync();
-        return Ok(ApiResult<List<BookDetailDto>>.Success(books, "Books retrieved successfully"));
+        return Ok(ApiResult<List<BookDetailDto>>
+            .Success(books, "Books retrieved successfully"));
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetBookByIdAsync([FromRoute] int id)
     {
         var book = await _bookService.GetBookByIdAsync(id);
-        return Ok(ApiResult<BookInfoDto>.Success(book, "Book retrieved successfully"));
+        return Ok(ApiResult<BookInfoDto>
+            .Success(book, "Book retrieved successfully"));
     }
 
     [HttpGet("available")]

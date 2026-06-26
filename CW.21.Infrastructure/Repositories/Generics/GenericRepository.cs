@@ -20,13 +20,13 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
     public async Task AddAsync(TEntity entity)
     {
         await _dbSet.AddAsync(entity);
-        await _context.SaveChangesAsync();
+        await SaveChangesAsync();
     }
 
     public async Task UpdateAsync(TEntity entity)
     {
         _dbSet.Update(entity);
-        await _context.SaveChangesAsync();
+        await SaveChangesAsync();
     }
 
     public async Task DeleteAsync(int id)
@@ -36,7 +36,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
         if(entity == null)
             return;
         _dbSet.Remove(entity);
-        await _context.SaveChangesAsync();
+        await SaveChangesAsync();
     }
 
     public async Task<TEntity?> GetByIdAsync(int id, bool tracking = false)
@@ -64,5 +64,10 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
         if (predicate != null)
             query = query.Where(predicate);
         return await query.ToListAsync();
+    }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _context.SaveChangesAsync();
     }
 }
