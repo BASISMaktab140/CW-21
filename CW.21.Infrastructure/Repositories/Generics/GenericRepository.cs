@@ -65,7 +65,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
         await SaveChangesAsync();
     }
 
-    protected async Task<int> SaveChangesAsync()
+    public async Task<int> SaveChangesAsync()
     {
        return await Context.SaveChangesAsync();
     }
