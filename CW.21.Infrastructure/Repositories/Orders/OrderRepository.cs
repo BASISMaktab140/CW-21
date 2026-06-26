@@ -1,3 +1,4 @@
+using CW._21.Domain.DTOs.Books;
 using CW._21.Domain.DTOs.Orders;
 using CW._21.Domain.Orders;
 using CW._21.Infrastructures.Data;
@@ -16,7 +17,10 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
         return await _dbSet
             .Where(b => b.CustomerId == customerId)
-            .Select(o => new OrdersByCustomerDto(o.OrderDate, o.TotalAmount, o.Status))
+            .Select(o => new OrdersByCustomerDto(
+                o.OrderDate, 
+                o.TotalAmount, 
+                o.Status))
             .ToListAsync();
     }
 
@@ -36,9 +40,18 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
             .ToListAsync();
     }
 
-    public Task<OrderWithDetailDto> GetOrderDetailsAsync(int orderId)
+    public async Task<OrderWithDetailDto> GetOrderDetailsAsync(int orderId)
     {
-        throw new NotImplementedException();
+        return await _dbSet
+            .Where(o => o.Id == orderId)
+            .Select(o => new OrderWithDetailDto(
+                o.OrderDate,
+                o.TotalAmount,
+                o.Status,
+                o.OrderItems.Select(b => 
+                    new BookInfoByCategoryDto(b.Book.Title, 
+                        b.Book.Author.FullName))
+                    .ToList())).FirstOrDefaultAsync();
     }
 
     public Task CreateOrderAsync(int customerId, List<(int bookId, int quantity)> items)

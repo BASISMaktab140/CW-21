@@ -42,5 +42,6 @@ public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     IQueryable<TEntity> GetAllQueryable(Expression<Func<TEntity, bool>>? predicate = null);
     
     Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>>? predicate = null);
-    
+
+    Task<int> SaveChangesAsync();
 }

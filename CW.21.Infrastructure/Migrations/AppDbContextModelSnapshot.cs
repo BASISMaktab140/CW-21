@@ -45,7 +45,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.BookTags.BookTag", b =>
@@ -68,7 +68,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("BookTags");
+                    b.ToTable("BookTags", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.Books.Book", b =>
@@ -120,7 +120,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.Categories.Category", b =>
@@ -141,7 +141,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.Customers.Customer", b =>
@@ -175,7 +175,7 @@ namespace CW21.Presentation.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customer", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.OrderItems.OrderItem", b =>
@@ -210,7 +210,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("OrderId1");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItem", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.Orders.Order", b =>
@@ -244,7 +244,7 @@ namespace CW21.Presentation.Migrations
 
                     b.HasIndex("CustomerId1");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.Publishers.Publisher", b =>
@@ -278,7 +278,7 @@ namespace CW21.Presentation.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Publisher");
+                    b.ToTable("Publisher", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.Tags.Tag", b =>
@@ -304,7 +304,7 @@ namespace CW21.Presentation.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("CW._21.Domain.BookTags.BookTag", b =>
