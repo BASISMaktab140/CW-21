@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CW.21.Domain\CW.21.Domain.csproj" />
       <ProjectReference Include="..\CW.21.Infrastructure\CW.21.Infrastructure.csproj" />
       <ProjectReference Include="..\CW.21.Service\CW.21.Service.csproj" />
     </ItemGroup>
