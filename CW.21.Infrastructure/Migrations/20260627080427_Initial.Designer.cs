@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CW._21.Infrastructures.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260619132404_SampleMigration")]
-    partial class SampleMigration
+    [Migration("20260627080427_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -168,14 +168,30 @@ namespace CW._21.Infrastructures.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("IsAcive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Customers");
@@ -195,9 +211,6 @@ namespace CW._21.Infrastructures.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -206,12 +219,9 @@ namespace CW._21.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId")
-                        .IsUnique();
+                    b.HasIndex("BookId");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("OrderId1");
 
                     b.ToTable("OrderItems");
                 });
@@ -225,9 +235,6 @@ namespace CW._21.Infrastructures.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerId1")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
@@ -245,9 +252,37 @@ namespace CW._21.Infrastructures.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("CustomerId1");
-
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("CW._21.Domain.OtpLogs.OtpLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailOrPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OtpLogs");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Publishers.Publisher", b =>
@@ -363,20 +398,14 @@ namespace CW._21.Infrastructures.Migrations
             modelBuilder.Entity("CW._21.Domain.OrderItems.OrderItem", b =>
                 {
                     b.HasOne("CW._21.Domain.Books.Book", "Book")
-                        .WithOne()
-                        .HasForeignKey("CW._21.Domain.OrderItems.OrderItem", "BookId")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CW._21.Domain.Orders.Order", null)
+                    b.HasOne("CW._21.Domain.Orders.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CW._21.Domain.Orders.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -387,16 +416,10 @@ namespace CW._21.Infrastructures.Migrations
 
             modelBuilder.Entity("CW._21.Domain.Orders.Order", b =>
                 {
-                    b.HasOne("CW._21.Domain.Customers.Customer", null)
+                    b.HasOne("CW._21.Domain.Customers.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("CW._21.Domain.Customers.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId1")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -410,6 +433,8 @@ namespace CW._21.Infrastructures.Migrations
             modelBuilder.Entity("CW._21.Domain.Books.Book", b =>
                 {
                     b.Navigation("BookTags");
+
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("CW._21.Domain.Categories.Category", b =>
