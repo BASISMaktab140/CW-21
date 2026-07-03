@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Cw._21.Abstraction;
 using CW._21.Domain.Books;
 
 namespace CW._21.Domain.Categories;

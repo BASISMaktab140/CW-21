@@ -8,11 +8,16 @@ public class CustomerModelBuilderConfiguration : BaseModelBuilderConfiguration<C
 {
     protected override void ApplyEntityConfiguration(EntityTypeBuilder<Customer> modelBuilder)
     {
+        //modelBuilder.HasMany(c => c.Orders)
+        //    .WithOne()
+        //    .HasForeignKey(o => o.CustomerId)
+        //    .OnDelete(DeleteBehavior.Restrict);
+
         modelBuilder.HasMany(c => c.Orders)
-            .WithOne()
-            .HasForeignKey(o => o.CustomerId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
+                 .WithOne(o => o.Customer)
+                 .HasForeignKey(o => o.CustomerId)
+                 .OnDelete(DeleteBehavior.Restrict);
+
         modelBuilder.HasIndex(c => c.Email)
             .IsUnique();
         

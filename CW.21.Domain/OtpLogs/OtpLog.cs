@@ -1,5 +1,3 @@
-using Cw._21.Abstraction;
-
 namespace CW._21.Domain.OtpLogs;
 
 public class OtpLog : BaseEntity

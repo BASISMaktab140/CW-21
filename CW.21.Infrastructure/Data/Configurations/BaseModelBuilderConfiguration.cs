@@ -1,4 +1,5 @@
 using Cw._21.Abstraction;
+using CW._21.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

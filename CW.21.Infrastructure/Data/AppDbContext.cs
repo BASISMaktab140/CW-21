@@ -8,11 +8,12 @@ using CW._21.Domain.OrderItems;
 using CW._21.Domain.Orders;
 using CW._21.Domain.OtpLogs;
 using CW._21.Domain.Tags;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace CW._21.Infrastructures.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityUser
 {
 
     public DbSet<Book> Books  { get; set; }
