@@ -1,5 +1,4 @@
-﻿using Cw._21.Abstraction;
-using CW._21.Domain.Books;
+﻿using CW._21.Domain.Books;
 using CW._21.Domain.Tags;
 
 namespace CW._21.Domain.BookTags

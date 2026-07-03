@@ -1,4 +1,3 @@
-using Cw._21.Abstraction;
 using CW._21.Domain.Authors;
 using CW._21.Domain.BookTags;
 using CW._21.Domain.Categories;
@@ -24,9 +23,8 @@ public class Book : BaseEntity
         CategoryId = categoryId;
         Stock = stock;
         PublisherId = publisherId;
-        //BookTags = bookTags;
     }
-    public Book(string title, decimal price, int publishYear, int authorId, Author author, int categoryId, Category category, int stock, int publisherId, Publisher publisher, List<BookTag> bookTags)
+    public Book(string title, decimal price, int publishYear, int authorId, Author author, int categoryId, Category category, int stock, int publisherId, Publisher publisher)
     {
         Title = title;
         Price = price;
@@ -38,7 +36,6 @@ public class Book : BaseEntity
         Stock = stock;
         PublisherId = publisherId;
         Publisher = publisher;
-        //BookTags = bookTags;
     }
 
     [Required(ErrorMessage = "Title is required")]
