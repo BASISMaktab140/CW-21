@@ -38,13 +38,15 @@ public class OrderController : ControllerBase
     }
 
     [HttpGet("/customer/{id:int}")]
-    public async Task<IActionResult> GetCustomerOrdersAsync([FromRoute] int id)
+    public async Task<IActionResult> GetCustomerOrdersAsync([FromRoute] string id)
     {
-        var orders = await _orderService
+        /*var orders = await _orderService
             .GetCustomerOrdersAsync(id);
         
         return Ok(ApiResult<List<OrdersByCustomerDto>>
-            .Success(orders, "Orders retrieved successfully."));
+            .Success(orders, "Orders retrieved successfully."));*/
+        
+        return Ok();    
     }
 
     [HttpPost]
@@ -53,8 +55,10 @@ public class OrderController : ControllerBase
         if (createOrderRequestDto.OrderItems is null || !createOrderRequestDto.OrderItems.Any())
             return BadRequest("Order must contain at least one item.");
 
+         /*
          await _orderService
              .CreateOrderAsync(createOrderRequestDto.CustomerId, createOrderRequestDto.OrderItems);
+             */
          
          return StatusCode(201, ApiResult<object>.Success(null!, "Order created successfully", 201));
 

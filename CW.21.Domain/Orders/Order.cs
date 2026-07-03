@@ -7,7 +7,7 @@ namespace CW._21.Domain.Orders;
 
 public class Order : BaseEntity
 {
-    public Order(int customerId, DateTime orderDate, string status,List<OrderItem> items)
+    public Order(string customerId, DateTime orderDate, string status,List<OrderItem> items)
     {
         CustomerId = customerId;
         OrderDate = orderDate;
@@ -21,7 +21,7 @@ public class Order : BaseEntity
     }
     
     
-    public Order(int customerId, DateTime orderDate, decimal totalAmount, string status, Customer customer)
+    public Order(string customerId, DateTime orderDate, decimal totalAmount, string status, Customer customer)
     {
         CustomerId = customerId;
         OrderDate = orderDate;
@@ -31,7 +31,7 @@ public class Order : BaseEntity
     }
 
     [Required]
-    public int CustomerId { get; set; }
+    public string CustomerId { get; set; }
     
     [Required]
     public DateTime OrderDate { get; set; } = DateTime.UtcNow;

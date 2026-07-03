@@ -5,7 +5,7 @@ namespace CW._21.Domain.Orders;
 
 public interface IOrderRepository : IGenericRepository<Order>
 {
-    Task<List<OrdersByCustomerDto>> GetOrdersByCustomerAsync(int customerId);
+    Task<List<OrdersByCustomerDto>> GetOrdersByCustomerAsync(string customerId);
     Task<OrderWithItemsDto?> GetOrderWithItemsAsync(int orderId);
     Task<List<AllOrderDto>> GetAllOrdersAsync();
     Task<OrderWithDetailDto?> GetOrderDetailsAsync(int orderId);

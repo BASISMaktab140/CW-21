@@ -7,8 +7,10 @@ public interface IOrderService
 {
     Task<List<AllOrderDto>> GetAllOrdersAsync();
     Task<OrderWithDetailDto> GetOrderDetailsAsync(int orderId);
-    Task<List<OrdersByCustomerDto>> GetCustomerOrdersAsync(int customerId);
+    
+    // TODO Rewrite method
+    void GetCustomerOrdersAsync(string customerId);
     Task UpdateOrderStatusAsync(int orderId, string status);
 
-    Task CreateOrderAsync(int customerId, List<OrderItemBasicDto> items);
+    Task CreateOrderAsync(string customerId, List<OrderItemBasicDto> items);
 }
