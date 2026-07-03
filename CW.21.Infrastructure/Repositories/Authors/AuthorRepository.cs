@@ -1,5 +1,4 @@
 using CW._21.Domain.Authors;
-using CW._21.Domain.DTOs;
 using CW._21.Domain.DTOs.Authors;
 using CW._21.Infrastructures.Data;
 using CW._21.Infrastructures.Repositories.Generics;
@@ -7,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CW._21.Infrastructures.Repositories.Authors;
 
-public class AuthorRepository : GenericRepository<Author> , IAuthorRepository
+public class AuthorRepository : GenericRepository<Author>, IAuthorRepository
 {
     public AuthorRepository(AppDbContext context) : base(context)
     {

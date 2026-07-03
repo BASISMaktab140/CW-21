@@ -11,7 +11,7 @@ public class PublisherModelBuilderConfiguration : BaseModelBuilderConfiguration<
         modelBuilder
             .HasIndex(b => b.Name)
             .IsUnique();
-        
+
         modelBuilder.Property(b => b.Name)
             .HasColumnType("nvarchar(100)")
             .IsRequired();
@@ -21,18 +21,16 @@ public class PublisherModelBuilderConfiguration : BaseModelBuilderConfiguration<
 
         modelBuilder.Property(p => p.PhoneNumber)
             .HasColumnType("nvarchar(20)");
-        
-        
+
+
         modelBuilder.HasMany(p => p.Books)
             .WithOne(b => b.Publisher)
             .HasForeignKey(b => b.PublisherId)
             .OnDelete(DeleteBehavior.Restrict);
-        
+
         modelBuilder.Property(b => b.CreatedAt)
             .HasDefaultValueSql("getdate()");
-        
-        //modelBuilder.HasData(SeedData.SeedData.Publishers);
 
+        //modelBuilder.HasData(SeedData.SeedData.Publishers);
     }
-    
 }

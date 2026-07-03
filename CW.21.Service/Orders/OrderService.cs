@@ -12,15 +12,12 @@ public class OrderService : IOrderService
 {
     private readonly IOrderRepository _orderRepository;
     private readonly IBookRepository _bookRepository;
-    private readonly ICustomerRepository _customerRepository;
 
 
-    public OrderService(IOrderRepository orderRepository, IBookRepository bookRepository,
-        ICustomerRepository customerRepository)
+    public OrderService(IOrderRepository orderRepository, IBookRepository bookRepository)
     {
         _orderRepository = orderRepository;
         _bookRepository = bookRepository;
-        _customerRepository = customerRepository;
     }
 
     public async Task<List<AllOrderDto>> GetAllOrdersAsync()
@@ -33,9 +30,9 @@ public class OrderService : IOrderService
         return await  _orderRepository.GetOrderDetailsAsync(orderId); 
     }
 
-    public async Task<List<OrdersByCustomerDto>> GetCustomerOrdersAsync(int customerId)
+    public async void GetCustomerOrdersAsync(string customerId)
     {
-        return await _orderRepository.GetOrdersByCustomerAsync(customerId);
+        return;
     }
 
 
@@ -51,7 +48,7 @@ public class OrderService : IOrderService
     }
     
 
-    public async Task CreateOrderAsync(int customerId, List<OrderItemBasicDto> items)
+    public async Task CreateOrderAsync(string customerId, List<OrderItemBasicDto> items)
     {
         var order = new Order
         (

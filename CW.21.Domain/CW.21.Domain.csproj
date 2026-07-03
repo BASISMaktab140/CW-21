@@ -6,13 +6,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="10.0.9" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Cw.21.Abstraction\Cw.21.Abstraction.csproj" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="10.0.8" />
     </ItemGroup>
 
 </Project>

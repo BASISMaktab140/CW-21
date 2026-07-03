@@ -9,15 +9,11 @@ public class OrderModelBuilderConfiguration : BaseModelBuilderConfiguration<Orde
     protected override void ApplyEntityConfiguration(EntityTypeBuilder<Order> modelBuilder)
     {
 
-        //modelBuilder.HasMany(o => o.OrderItems)
-        //    .WithOne()
-        //    .HasForeignKey(o => o.OrderId)
-        //    .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.HasMany(o => o.OrderItems)
-             .WithOne(oi => oi.Order)
-             .HasForeignKey(oi => oi.OrderId)
-             .OnDelete(DeleteBehavior.Cascade);
+            .WithOne(oi => oi.Order)
+            .HasForeignKey(oi => oi.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
 
 
         modelBuilder.Property(o => o.TotalAmount)

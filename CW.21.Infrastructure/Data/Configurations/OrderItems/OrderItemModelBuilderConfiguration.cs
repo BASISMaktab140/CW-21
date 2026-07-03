@@ -8,16 +8,15 @@ public class OrderItemModelBuilderConfiguration : BaseModelBuilderConfiguration<
 {
     protected override void ApplyEntityConfiguration(EntityTypeBuilder<OrderItem> modelBuilder)
     {
-
         //modelBuilder.HasOne(o => o.Book)
         //    .WithOne()
         //    .HasForeignKey<OrderItem>(o => o.BookId)
         //    .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.HasOne(oi => oi.Book)
-              .WithMany(b => b.OrderItems)
-              .HasForeignKey(oi => oi.BookId)
-              .OnDelete(DeleteBehavior.Restrict);
+            .WithMany(b => b.OrderItems)
+            .HasForeignKey(oi => oi.BookId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Property(o => o.UnitPrice)
             .HasColumnType("decimal(12,2)");

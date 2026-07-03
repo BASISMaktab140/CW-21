@@ -9,19 +9,18 @@ public class CategoryModelBuilderConfiguration : BaseModelBuilderConfiguration<C
     protected override void ApplyEntityConfiguration(EntityTypeBuilder<Category> modelBuilder)
     {
         modelBuilder.Property(c => c.Name)
-            .IsRequired().
-            HasColumnType("nvarchar(50)");
+            .IsRequired().HasColumnType("nvarchar(50)");
 
         modelBuilder
             .Property(c => c.Description)
             .HasColumnType("nvarchar(400)");
-            
+
 
         modelBuilder
             .HasMany(c => c.Books)
             .WithOne(b => b.Category)
             .HasForeignKey(b => b.CategoryId);
-        
+
         //modelBuilder.HasData(SeedData.SeedData.Categories);
     }
 }

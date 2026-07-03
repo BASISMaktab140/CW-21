@@ -1,9 +1,8 @@
 using System.Linq.Expressions;
-using Cw._21.Abstraction;
-using CW._21.Domain;
 using CW._21.Domain.Generics;
 using CW._21.Infrastructures.Data;
 using Microsoft.EntityFrameworkCore;
+using BaseEntity = CW._21.Domain.BaseEntity;
 
 namespace CW._21.Infrastructures.Repositories.Generics;
 
@@ -17,6 +16,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
         Context = context;
         DbSet = context.Set<TEntity>();
     }
+
     public IQueryable<TEntity> GetAllQueryable(Expression<Func<TEntity, bool>>? predicate = null)
     {
         IQueryable<TEntity> query = DbSet;
@@ -34,12 +34,12 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
             query = query.Where(predicate);
         return await query.ToListAsync();
     }
-   
+
     public async Task<TEntity?> GetByIdAsync(int id, bool tracking = false)
     {
         var query = DbSet.AsQueryable<TEntity>();
 
-        if(tracking)
+        if (tracking)
             query = query.AsTracking();
         return await query.FirstOrDefaultAsync(e => e.Id == id);
     }
@@ -60,7 +60,7 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
     {
         var entity = await DbSet.FindAsync(id);
 
-        if(entity == null)
+        if (entity == null)
             return;
         DbSet.Remove(entity);
         await SaveChangesAsync();
@@ -68,6 +68,6 @@ public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> w
 
     public async Task<int> SaveChangesAsync()
     {
-       return await Context.SaveChangesAsync();
+        return await Context.SaveChangesAsync();
     }
 }

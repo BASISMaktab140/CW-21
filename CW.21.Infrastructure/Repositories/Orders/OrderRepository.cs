@@ -13,13 +13,13 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
     }
 
-    public async Task<List<OrdersByCustomerDto>> GetOrdersByCustomerAsync(int customerId)
+    public async Task<List<OrdersByCustomerDto>> GetOrdersByCustomerAsync(string customerId)
     {
         return await DbSet
             .Where(b => b.CustomerId == customerId)
             .Select(o => new OrdersByCustomerDto(
-                o.OrderDate, 
-                o.TotalAmount, 
+                o.OrderDate,
+                o.TotalAmount,
                 o.Status))
             .ToListAsync();
     }
@@ -36,7 +36,8 @@ public class OrderRepository : GenericRepository<Order>, IOrderRepository
     public async Task<List<AllOrderDto>> GetAllOrdersAsync()
     {
         return await DbSet
-            .Select(o => new AllOrderDto(o.OrderDate, o.TotalAmount, o.Status, o.Customer.Fullname))
+            .Select(o => new AllOrderDto(o.OrderDate, o.TotalAmount, o.Status,
+                o.Customer.FirstName + ' ' + o.Customer.LastName))
             .ToListAsync();
     }
 

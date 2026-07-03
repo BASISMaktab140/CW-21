@@ -48,8 +48,6 @@ public class BookModelBuilderConfiguration : BaseModelBuilderConfiguration<Book>
             .OnDelete(DeleteBehavior.Restrict);
 
 
-      //modelBuilder.HasData(SeedData.SeedData.Books);
-
-
+        //modelBuilder.HasData(SeedData.SeedData.Books);
     }
 }

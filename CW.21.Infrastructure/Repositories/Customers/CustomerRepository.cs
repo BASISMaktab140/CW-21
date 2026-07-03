@@ -1,37 +1,42 @@
-using System.Security.Cryptography;
-using System.Text;
 using CW._21.Domain.Customers;
-using CW._21.Domain.DTOs.Orders;
-using CW._21.Domain.Exceptions;
 using CW._21.Infrastructures.Data;
-using CW._21.Infrastructures.Repositories.Generics;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace CW._21.Infrastructures.Repositories.Customers;
 
-public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
+public class CustomerRepository : UserManager<Customer>, ICustomerRepository
 {
-    public CustomerRepository(AppDbContext context) : base(context)
+    public CustomerRepository(AppDbContext appDbContext,IUserStore<Customer> store,
+        IOptions<IdentityOptions> optionsAccessor, 
+        IPasswordHasher<Customer> passwordHasher, IEnumerable<IUserValidator<Customer>> userValidators,
+        IEnumerable<IPasswordValidator<Customer>> passwordValidators,
+        ILookupNormalizer keyNormalizer, IdentityErrorDescriber errors,
+        IServiceProvider services, 
+        ILogger<UserManager<Customer>> logger) :
+        base(store, optionsAccessor, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
     {
+        
     }
 
     public Task<Customer?> GetByUsernameAsync(string username)
     {
-        return DbSet.FirstOrDefaultAsync(c => c.Username == username);
+        throw new NotImplementedException();
     }
 
     public Task<bool> UsernameExistsAsync(string username)
     {
-        return DbSet.AnyAsync(c => c.Username == username);
+        throw new NotImplementedException();
     }
 
     public Task<bool> EmailOrPhoneNumberExistsAsync(string emailOrPhoneNumber)
     {
-        return DbSet.AnyAsync(c => c.PhoneNumber == emailOrPhoneNumber || c.Email == emailOrPhoneNumber);
+        throw new NotImplementedException();
     }
 
     public Task<Customer?> GetByEmailOrPhoneNumberAsync(string emailOrPhoneNumber)
     {
-        return DbSet.FirstOrDefaultAsync(c => c.Email == emailOrPhoneNumber || c.PhoneNumber == emailOrPhoneNumber);
+        throw new NotImplementedException();
     }
 }

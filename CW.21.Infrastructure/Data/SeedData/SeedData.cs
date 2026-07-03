@@ -10,8 +10,6 @@
 // customers and orders seed data
 
 
-
-
 // public static class SeedData
 // {
 //     public static readonly List<Author> Authors = new()
@@ -334,3 +332,4 @@
 //     new BookTag { BookId = 20, TagId = 3 }*/
 //     };
 // }
+

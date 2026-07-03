@@ -1,3 +1,3 @@
 namespace CW._21.Domain.DTOs.Customers;
 
-public record CustomerDto(string Fullname, string Email, string PhoneNumber);
+public record CustomerDto(string FirstName, string LastName, string Email, string PhoneNumber);

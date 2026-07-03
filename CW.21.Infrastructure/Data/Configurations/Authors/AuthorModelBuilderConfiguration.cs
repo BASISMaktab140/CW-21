@@ -11,19 +11,18 @@ public class AuthorModelBuilderConfiguration : BaseModelBuilderConfiguration<Aut
         modelBuilder.Property(u => u.FullName)
             .IsRequired()
             .HasColumnType("nvarchar(100)");
-        
+
         modelBuilder.Property(u => u.BirthYear)
             .HasColumnType("int");
-        
+
         modelBuilder.Property(u => u.Country)
             .IsRequired();
-        
+
         modelBuilder
-            .HasMany(a=> a.Books)
+            .HasMany(a => a.Books)
             .WithOne(b => b.Author)
             .HasForeignKey(b => b.AuthorId);
 
         //modelBuilder.HasData(SeedData.SeedData.Authors);
-        
     }
 }

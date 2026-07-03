@@ -26,6 +26,7 @@ using CW._21.Services.Orders;
 using CW._21.Services.Publishers;
 using CW._21.Services.Redis;
 using CW._21.Services.Tags;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +36,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddIdentityCore<Customer>()
+    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
@@ -74,6 +78,7 @@ builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IRedisService, RedisService>();
+
 
 
 var app = builder.Build();

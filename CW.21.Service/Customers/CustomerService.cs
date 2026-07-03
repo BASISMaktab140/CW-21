@@ -5,85 +5,92 @@ using CW._21.Domain.DTOs.Customers;
 using CW._21.Domain.DTOs.Orders;
 using CW._21.Domain.Exceptions;
 using CW._21.Domain.OtpLogs;
+using Microsoft.AspNetCore.Identity;
 
 namespace CW._21.Services.Customers;
 
 public class CustomerService : ICustomerService
 {
-    private readonly ICustomerRepository _customerRepository;
+  //  private readonly ICustomerRepository _customerRepository;
     private readonly IOtpLogRepository _otpLogRepository;
+    private readonly UserManager<Customer> _userManager;
 
-    public CustomerService(ICustomerRepository customerRepository, IOtpLogRepository otpLogRepository)
+    
+    public CustomerService(ICustomerRepository customerRepository, 
+        IOtpLogRepository otpLogRepository, 
+        UserManager<Customer> userManager)
     {
-        _customerRepository = customerRepository;
+       // _customerRepository = customerRepository;
         _otpLogRepository = otpLogRepository;
+        _userManager = userManager;
     }
 
-    public async Task RegisterAsync(RegisterCustomerDto customer)
+    public async Task RegisterAsync(RegisterCustomerDto registerCustomerDto)
     {
-        if (await _customerRepository.UsernameExistsAsync(customer.Username))
-            throw new BadRequestException("Username already exists");
+        var customer  = await _userManager.FindByNameAsync(registerCustomerDto.Username);
+        if (customer == null)
+            throw new BadRequestException("Customer already exists");
 
-        var passwordHash = HashPassword(customer.Password);
+        var passwordHash = HashPassword(registerCustomerDto.Password);
+        
+         customer = new Customer(
+            registerCustomerDto.FirstName,
+            registerCustomerDto.LastName,
+                
+            registerCustomerDto.Username,
+            passwordHash,
+            registerCustomerDto.PhoneNumber,
+            registerCustomerDto.Email
+        );
+        await _userManager.CreateAsync(customer, passwordHash);
 
-        await _customerRepository.AddAsync(
-            new Customer(
-                customer.Fullname,
-                customer.Email,
-                customer.PhoneNumber,
-                customer.Username,
-                passwordHash));
     }
 
-    public async Task<string> LoginAsync(LoginCustomerDto loginInfo)
+    public Task<string> LoginAsync(LoginCustomerDto customer)
     {
-        var customer = await _customerRepository.GetByUsernameAsync(loginInfo.Username);
-        if (customer == null || customer.PasswordHash != HashPassword(loginInfo.Password))
-            throw new UnauthorizedException("Invalid username or password");
-        if (!customer.IsAcive)
-            throw new UnauthorizedException("Your account has been deactivated");
-        return $"Welcome {customer.Fullname}! Login successful.";
+        throw new NotImplementedException();
     }
 
-    public async Task<IEnumerable<CustomerDto>> GetAllCustomersAsync()
+    public Task<CustomerDto?> GetCustomerByIdAsync(int id)
     {
-        var customers = await _customerRepository.GetAllAsync();
-        return customers.Select(c => new CustomerDto(c.Fullname, c.Email, c.PhoneNumber));
+        throw new NotImplementedException();
     }
 
-
-    public async Task<CustomerDto?> GetCustomerByIdAsync(int id)
+    public Task<CustomerDto?> GetCustomerByUsernameAsync(string username)
     {
-        var customer = await _customerRepository.GetByIdAsync(id);
-        if (customer == null) return null;
-        return new CustomerDto(customer.Fullname, customer.Email, customer.PhoneNumber);
+        throw new NotImplementedException();
     }
 
-    public async Task ForgetPasswordAsync(ForgotPasswordDto forgotPasswordDto)
+    public Task<IEnumerable<CustomerDto>> GetAllCustomersAsync()
     {
-        if (!await _customerRepository.EmailOrPhoneNumberExistsAsync(forgotPasswordDto.EmailOrPhoneNumber))
-            throw new BadRequestException("Email does not exist");
-
-        var code = Random.Shared.Next(1000, 9999).ToString();
-        var otpLog = new OtpLog(code, forgotPasswordDto.EmailOrPhoneNumber, DateTime.UtcNow.AddMinutes(5));
-        await _otpLogRepository.AddAsync(otpLog);
+        throw new NotImplementedException();
     }
 
-    public async Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
+    public Task<bool> UpdateInfoAsync(CustomerDto role)
     {
-        var otpLog =
-            await _otpLogRepository.GetValidCodeAsync(resetPasswordDto.EmailOrPhoneNumber, resetPasswordDto.Code);
-        if (otpLog == null)
-            throw new BadRequestException("Invalid or expired OTP Code");
-
-        var customer = await _customerRepository.GetByEmailOrPhoneNumberAsync(resetPasswordDto.EmailOrPhoneNumber);
-        var newPassword = HashPassword(resetPasswordDto.NewPassword);
-        customer.PasswordHash = newPassword;
-        await _customerRepository.UpdateAsync(customer);
-
-        otpLog.IsUsed = true;
-        await _otpLogRepository.UpdateAsync(otpLog);
+        throw new NotImplementedException();
     }
+
+    public Task ForgetPasswordAsync(ForgotPasswordDto forgotPasswordDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task CheckPasswordAsync(string username, string password)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteCustomerAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
 
     private static string HashPassword(string password)
     {

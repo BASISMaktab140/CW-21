@@ -26,8 +26,8 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
     {
         return await DbSet
             .Select(book => new BookDetailDto(book.Title, book.Price, book.Stock,
-            book.Author.FullName, book.Category.Name,
-            book.Publisher.Name, book.BookTags.Select(t => t.Tag.Name).ToList())).ToListAsync();
+                book.Author.FullName, book.Category.Name,
+                book.Publisher.Name, book.BookTags.Select(t => t.Tag.Name).ToList())).ToListAsync();
     }
 
     public async Task<List<BookInfoDto>> GetAvailableBooksAsync()
@@ -35,8 +35,8 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
         return await DbSet
             .Where(x => x.Stock > 0)
             .Select(book => new BookInfoDto(book.Title, book.Price, book.Stock, book.PublishYear,
-            book.Author, book.Category, book.Publisher
-            , book.BookTags.Select(t => t.Tag).ToList())).ToListAsync();
+                book.Author, book.Category, book.Publisher
+                , book.BookTags.Select(t => t.Tag).ToList())).ToListAsync();
     }
 
     public async Task<List<BookInfoDto>> GetBookByTitleAsync(string title)
@@ -46,12 +46,11 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
             .Select(book => new BookInfoDto(book.Title, book.Price, book.Stock, book.PublishYear,
                 book.Author, book.Category, book.Publisher
                 , book.BookTags.Select(t => t.Tag).ToList())).ToListAsync();
-        
     }
-    
+
     public async Task<List<Book>?> GetBooksWithMinimumPriceAsync(int minimumQuantity)
     {
-        var averagePrice = await  DbSet.AverageAsync(b => b.Price);
+        var averagePrice = await DbSet.AverageAsync(b => b.Price);
         return await DbSet
             .Where(b => b.Stock > minimumQuantity)
             .Where(b => b.Price < averagePrice)
@@ -60,18 +59,17 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
 
     public async Task<List<BookSpecsDto>> GetBookSpecsAsync()
     {
-        return await DbSet.
-        Select(book => new BookSpecsDto(book.Title, book.Author.FullName,
+        return await DbSet.Select(book => new BookSpecsDto(book.Title, book.Author.FullName,
             book.Category.Name, book.Publisher.Name, book.BookTags.Select(tag => tag.Tag.Name).ToList())).ToListAsync();
     }
 
     public async Task<List<BookInfoByTagDto>> GetBooksByTagAsync(string tagName)
     {
-        return await  DbSet
+        return await DbSet
             .Select(book => new BookInfoByTagDto(
-            book.Author.FullName,
-            book.Title,
-            book.Price)).ToListAsync();
+                book.Author.FullName,
+                book.Title,
+                book.Price)).ToListAsync();
     }
 
     public async Task<List<BookInfoByCategoryDto>> GetBooksByCategoryAsync(string categoryName)
@@ -115,8 +113,7 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
         return await DbSet
             .Where(b => b.PublishYear == publishYear)
             .Select(book => new BookInfoWithPublishYearDto(
-            book.Title,
-            book.PublishYear)).ToListAsync();
-        
+                book.Title,
+                book.PublishYear)).ToListAsync();
     }
 }

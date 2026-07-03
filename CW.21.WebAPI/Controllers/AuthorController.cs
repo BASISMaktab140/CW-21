@@ -11,7 +11,7 @@ namespace CW._21.WebAPI.Controllers;
 [Route("Authors")]
 public class AuthorController : ControllerBase
 {
-    private readonly IAuthorService _authorService
+    private readonly IAuthorService _authorService;
 
     public AuthorController(IAuthorService authorService)
     {

@@ -1,25 +1,24 @@
-using CW._21.Domain.Orders;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using System.Net;
+using CW._21.Domain.Orders;
 
 namespace CW._21.Domain.Customers;
 
-public class Customer : IdentityUser<int>, IAudible
+public class Customer : IdentityUser, IAudible
 {
-    // Public Sealed Class
     public Customer()
     {
 
     }
-    public Customer(string firstName, string lastName, string userName, string email, string password, string phoneNumber)
+    public Customer(string firstName, string lastName, string username,
+        string passwordHash, string phoneNumber, string email )
     {
         FirstName = firstName;
         LastName = lastName;
-        UserName = userName;
-        Email = email;
-        Password = password;
+        UserName = username;
+        PasswordHash = passwordHash;
         PhoneNumber = phoneNumber;
+        Email = email;
     }
 
     [Required]
@@ -31,20 +30,28 @@ public class Customer : IdentityUser<int>, IAudible
     [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "only letter allowed")]
     public string LastName { get; set; }
     [Required]
-    public string Username { get; set; }
+    public override string UserName { get; set; }
     [Required]
 
     [EmailAddress(ErrorMessage = "Not valid Email Address")]
-    public string Email { get; set; }
+    public override string Email { get; set; }
     [Required]
-    public string Password { get; set; }
+    public override string PasswordHash { get; set; }
+    
+    
     [Required]
+    [MinLength(10)]
     [MaxLength(11)]
-    [MinLength(11)]
-    public string PhoneNumber { get; set; }
+    public override string PhoneNumber { get; set; }
+
+    public List<Order> Orders { get; set; }
+    
     public DateTime CreatedAt { get; set; }
+    
     public DateTime ModifiedAt { get; set; }
+    
     public bool IsDeleted { get; set; }
+    
     public void Validate()
     {
         if (string.IsNullOrEmpty(FirstName))
@@ -54,10 +61,10 @@ public class Customer : IdentityUser<int>, IAudible
             throw new Exception("Last name is required");
 
 
-        if (string.IsNullOrEmpty(Username))
+        if (string.IsNullOrEmpty(UserName))
             throw new Exception("Username is required");
 
-        if (string.IsNullOrEmpty(Password))
+        if (string.IsNullOrEmpty(PasswordHash))
             throw new Exception("Password is required");
 
         if (string.IsNullOrEmpty(Email))
